@@ -56,4 +56,9 @@ class Apartment extends Model
 
         return $slugExists ? $newSlug : $slug;
     }
+
+    public function services()
+    {
+        return $this->belongsToMany(Service::class, 'apartment_service');
+    }
 }
