@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('apartment_id')->constrained()->onDelete('cascade');
+            $table->string('email', 400);
+            $table->string('content', 10000);
             $table->timestamps();
         });
     }
