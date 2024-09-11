@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Apartment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApartmentController extends Controller
 {
@@ -42,6 +43,8 @@ class ApartmentController extends Controller
             'image' => 'nullable|string|max:2048',
             'is_visible' => 'boolean',
         ]);
+
+        $request->merge(['user_id' => Auth::id()]);
 
         Apartment::create($request->all());
 
