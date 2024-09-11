@@ -64,7 +64,7 @@ class MessageSeeder extends Seeder
         if ($apartments_length > 0) {
             foreach ($seedingData as $data) {
                 $message = new Message();
-                $message->apartment_id = $apartments[random_int(0, $apartments_length)]->id;
+                $message->apartment_id = $apartments[random_int(0, $apartments_length - 1)]->id;
                 $message->email = $data['email'];
                 $message->content = $data['content'];
                 $message->save();
