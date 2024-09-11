@@ -10,6 +10,7 @@
     <div id="apartment_create">
         <section id="services">
             <form action="{{ route('apartments.store') }}" method="POST">
+                @csrf
                 <div class="container-sm main-block text-center py-5 overflow-y-auto">
                     {{-- PAGINA 1 PREVIEW --}}
                     <div id="page-1" class="page row row-cols-2">
@@ -63,7 +64,8 @@
                                     appartamento?</label>
                                 <h4 id="value-of-range-3">1</h4>
                                 <input type="range" class="form-range" min="1" max="10" step="1"
-                                    value="1" onchange="changeSliderValue(this, 'value-of-range-3')" id="rooms">
+                                    value="1" onchange="changeSliderValue(this, 'value-of-range-3')" id="rooms"
+                                    name="rooms">
                             </div>
 
                             {{-- INPUT BAGNI --}}
@@ -87,7 +89,7 @@
                                 </div>
                                 <input type="range" class="form-range" min="10" max="255" step="1"
                                     value="1" onchange="changeSliderValue(this, 'value-of-range-sm')"
-                                    id="squared-meters" name="squared_meters">
+                                    id="squared-meters" name="square_meters">
                             </div>
                         </div>
                     </div>
@@ -128,10 +130,31 @@
                     {{-- PAGINA 6 SERVIZI --}}
                     <div id="page-6" class="page row">
                         <div class="col">
-                            <h2>Facci vedere il tuo lato migliore</h2>
+                            <h2>Indicaci i servizi a disposizione dei clienti</h2>
+                            <ul>
+                                <li>Servizio 1</li>
+                            </ul>
+                        </div>
+                    </div>
 
+                    {{-- PAGINA 7 PREZZO --}}
+                    <div id="page-7" class="page row">
+                        <div class="col">
+                            <h2>Quanto pensi che valga la tua struttura</h2>
 
-
+                            {{-- INPUT PREZZO --}}
+                            <div class="mb-2">
+                                <label for="rooms" class="form-label fw-bold">Nello scegliere il prezzo tieni conto
+                                    delle strutture a te vicine, dei servizi che offri. Suggeriamo sempre di iniziare con un
+                                    prezzo concorrenziale per permettere agli utenti di iniziare a conoscerti</label>
+                                <div>
+                                    <h4 class="d-inline" id="value-of-range-price">10</h4>
+                                    <h4 class="d-inline">&euro;</h4>
+                                </div>
+                                <input type="range" class="form-range" min="10" max="1000" step="5"
+                                    value="1" onchange="changeSliderValue(this, 'value-of-range-price')"
+                                    id="rooms" name="price">
+                            </div>
                         </div>
                     </div>
 
