@@ -68,4 +68,11 @@ class Apartment extends Model
             ->withPivot('start_time', 'end_time')
             ->withTimestamps();
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
+
+
