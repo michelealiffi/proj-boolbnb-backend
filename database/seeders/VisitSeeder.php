@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class VisitSeeder extends Seeder
 {
@@ -13,6 +14,9 @@ class VisitSeeder extends Seeder
      */
     public function run(): void
     {
+
+        Schema::disableForeignKeyConstraints();
+
         DB::table('visits')->insert([
             [
                 'apartment_id' => 1,
@@ -55,5 +59,7 @@ class VisitSeeder extends Seeder
                 'ip_address' => '192.168.0.10',
             ],
         ]);
+
+        Schema::enableForeignKeyConstraints();
     }
 }
