@@ -30,11 +30,11 @@ class Apartment extends Model
         parent::boot();
 
         static::creating(function ($apartment) {
-            $apartment->slug = static::createUniqueSlug($apartment->name);
+            $apartment->slug = static::createUniqueSlug($apartment->title);
         });
 
         static::updating(function ($apartment) {
-            $apartment->slug = static::createUniqueSlug($apartment->name, $apartment->id);
+            $apartment->slug = static::createUniqueSlug($apartment->title, $apartment->id);
         });
     }
 

@@ -21,6 +21,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="{{ mix('/scss/app.scss') }}">
 
+    <!-- Script -->
+    @stack('script')
+
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 </head>
