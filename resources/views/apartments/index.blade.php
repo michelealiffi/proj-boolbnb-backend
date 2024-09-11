@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Boolbnb')
+
 @section('content')
     <div class="container">
         <h1 class="my-4">List of Apartments</h1>
