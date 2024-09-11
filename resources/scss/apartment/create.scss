@@ -1,0 +1,20 @@
+#apartment_create{
+    .main-block{
+        height: calc(100vh - 71px - 10vh );
+        
+        h2{
+            font-size: calc(1rem + 2.8vw);
+            margin-bottom: 6vh;
+        }
+
+        p{
+            font-size: calc(1rem + 1vw);
+        }
+
+    }
+
+    .progress-block{
+        width: 100vw;
+        margin: 0;
+    }
+}
