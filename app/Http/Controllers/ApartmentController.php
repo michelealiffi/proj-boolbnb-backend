@@ -54,9 +54,8 @@ class ApartmentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($slug)
+    public function show(Apartment $apartment)
     {
-        $apartment = Apartment::where('slug', $slug)->firstOrFail();
         return view('apartments.show', compact('apartment'));
     }
 
