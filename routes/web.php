@@ -24,7 +24,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('apartments', ApartmentController::class)->parameters(['apartments' => 'slug']);
+Route::resource('apartments', ApartmentController::class)->parameters(['apartments' => 'apartment:slug']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
