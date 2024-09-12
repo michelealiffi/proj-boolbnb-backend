@@ -2,6 +2,7 @@ let current_page = 0;
 
 
 const button_page_forward = document.getElementById('button-forward')
+const button_page_backward = document.getElementById('button-backward')
 
 const pages = [
     document.getElementById('page-1'), 
@@ -36,7 +37,7 @@ function validateTextField(id, min = 0, max = null){
     }
 }
 
-// CAMBIO PAGINA DA PAGINA 1 A PAGINA 2
+// AVANZO  DI PAGINA IN PAGINA
 button_page_forward.addEventListener("click", function(event){
     if (current_page < 7){
         event.preventDefault()
@@ -100,6 +101,21 @@ button_page_forward.addEventListener("click", function(event){
 
 });
 
+
+// TORNO ALLA PAGINA PRECEDENTE
+button_page_backward.addEventListener("click", function(event){
+    event.preventDefault()
+    if(current_page > 0){
+        // nascondo la pagina corrente
+        pages[current_page].hidden = true;
+
+        // torno indietro di una pagina
+        current_page -= 1;
+
+        // mostro la pagina
+        pages[current_page].hidden = false;
+    }
+})
 
 // GESTISCO IL NUMERO DELLO SLIDER
 window.changeSliderValue = function (element, label_id){

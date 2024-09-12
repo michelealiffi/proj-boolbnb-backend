@@ -179,7 +179,9 @@
 
                 <div class="container-full  progress-block">
                     <div class="row">
-                        <div class="col-2"></div>
+                        <div class="col-2 text-center">
+                            <button id="button-backward" class="btn btn-secondary">Indietro</button>
+                        </div>
                         <div class="col-8"></div>
                         <div class="col-2">
                             <button id="button-forward" class="btn btn-primary">Procedi</button>
