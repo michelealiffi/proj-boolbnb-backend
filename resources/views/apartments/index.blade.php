@@ -12,14 +12,14 @@
             <a href="{{ route('apartments.create') }}" class="btn btn-primary mb-4">Create New Apartment</a>
 
             {{-- Box Messaggi --}}
-            <a href="#" class="alert-link">
-                <i class="fa-solid fa-envelope fa-2xl"></i>{{-- {{ session('message') }} --}}
-                {{-- @if (session('unread_messages_count') > 0) --}}
-                <span class="position-absolute top-20 start-75 translate-middle badge rounded-pill bg-danger">
-                    {{-- {{ session('unread_messages_count') }} --}}
-                    <span class="visually-hidden">unread messages</span>
-                </span>
-                {{-- @endif --}}
+            <a href="{{ route('messages.index') }}" class="alert-link">
+                <i class="fa-solid fa-envelope fa-2xl"></i>{{ session('message') }}
+                @if (session('unread_messages_count') > 0)
+                    <span class="position-absolute top-20 start-75 translate-middle badge rounded-pill bg-danger">
+                        {{ session('unread_messages_count') }}
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                @endif
             </a>
 
         </div>
