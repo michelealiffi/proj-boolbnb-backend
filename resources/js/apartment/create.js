@@ -27,13 +27,35 @@ pages.forEach((element, index) => {
     }
 })
 
+function validateTextField(id, min = 0, max = null){
+    const element = document.getElementById(id);
+    if (element.value == false){
+        return false
+    } else {
+        return true
+    }
+}
+
 // CAMBIO PAGINA DA PAGINA 1 A PAGINA 2
 button_page_forward.addEventListener("click", function(event){
     if (current_page < 7){
         event.preventDefault()
-    
+        
+        if (current_page === 1){
+            //quando provo a inviare il titolo
+            if (validateTextField('title') === false){
+                alert("Il titolo è obbligatorio")
+                return
+            }
+        }
         // quando passo da inserisci indirizzo a mostra indirizzo
         if (current_page === 3){
+
+            if (validateTextField('address') === false){
+                alert("L'indirizzo è obbligatorio")
+                return
+            }
+
             const apiUrl = '/api/tomtom/geolocalize/';
 
             const user_input = encodeURIComponent(address_input_field.value);
@@ -57,6 +79,13 @@ button_page_forward.addEventListener("click", function(event){
             .catch(error => {
                 console.error('Error:', error);
             });
+        }
+
+        if (current_page === 5){
+            if (validateTextField('image') === false){
+                alert("L'immagine è obbligatoria")
+                return
+            }
         }
 
         // nascondo la pagina corrente
