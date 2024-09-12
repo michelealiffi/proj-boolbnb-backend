@@ -35,7 +35,7 @@ class TomTom extends Controller
             'query' => $search,
             'ext' => 'json',
             'myKey' => env('TOM_TOM_KEY'),
-        ])->withoutVerifying()->get('{+endpoint}/{query}.{ext}?key={myKey}&typehead=true&limit=10');
+        ])->withoutVerifying()->get('{+endpoint}/{query}.{ext}?key={myKey}&typehead=true&limit=5');
 
         $data = json_decode($response->body());
 
