@@ -104,14 +104,31 @@
                                 <label for="address" class="form-label fw-bold">Inserisci via, città e cap del tuo
                                     appartamento</label>
                                 <input type="text" class="form-control text-center" id="address"
-                                    placeholder="via Giacomo Rotondo 12, Marte 01234" name="address">
+                                    placeholder="via Giacomo Rotondo 12, Marte 01234">
                             </div>
 
                         </div>
                     </div>
 
-                    {{-- PAGINA 5 IMMAGINE --}}
+                    {{-- PAGINA 5 RISULTATO TOM TOM --}}
                     <div id="page-5" class="page row">
+                        <div class="col">
+                            <h2>A noi risulta che ti trovi qui, verifica che sia corretto!</h2>
+
+                            {{-- INPUT INDIRIZZO --}}
+                            <div class="mb-5">
+                                <label for="result_address" class="form-label fw-bold">La tua via è:</label>
+                                <h3 id="result_address_label">Caricamento, attendere prego...</h3>
+                                <input type="hidden" id="result_address" name="address">
+                                <input type="hidden" id="latitude" name="latitude">
+                                <input type="hidden" id="longitude" name="longitude">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    {{-- PAGINA 6 IMMAGINE --}}
+                    <div id="page-6" class="page row">
                         <div class="col">
                             <h2>Facci vedere il tuo lato migliore</h2>
 
@@ -127,8 +144,8 @@
                         </div>
                     </div>
 
-                    {{-- PAGINA 6 SERVIZI --}}
-                    <div id="page-6" class="page row">
+                    {{-- PAGINA 7 SERVIZI --}}
+                    <div id="page-7" class="page row">
                         <div class="col">
                             <h2>Indicaci i servizi a disposizione dei clienti</h2>
                             <ul>
@@ -137,8 +154,8 @@
                         </div>
                     </div>
 
-                    {{-- PAGINA 7 PREZZO --}}
-                    <div id="page-7" class="page row">
+                    {{-- PAGINA 8 PREZZO --}}
+                    <div id="page-8" class="page row">
                         <div class="col">
                             <h2>Quanto pensi che valga la tua struttura</h2>
 

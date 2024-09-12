@@ -49,8 +49,8 @@ class ApartmentController extends Controller
         $apartment->user_id = Auth::id();
 
         // inseriti manualmente per mancanza di tom tom
-        $apartment->latitude = random_int(1, 89);
-        $apartment->longitude = random_int(1, 89);
+        // $apartment->latitude = random_int(1, 89);
+        // $apartment->longitude = random_int(1, 89);
 
         $apartment->save();
 

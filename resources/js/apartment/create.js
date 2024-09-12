@@ -11,7 +11,15 @@ const pages = [
     document.getElementById('page-5'),
     document.getElementById('page-6'),
     document.getElementById('page-7'),
+    document.getElementById('page-8'),
 ]
+
+// ELEMENTI DOM PER GESTIRE L'INDIRIZZO
+const address_input_field = document.getElementById("address");
+const address_output_field = document.getElementById("result_address")
+const address_output_label = document.getElementById("result_address_label")
+const latitude_output_field = document.getElementById('latitude')
+const longitude_output_field = document.getElementById('longitude')
 
 pages.forEach((element, index) => {
     if (index != 0){
@@ -21,9 +29,36 @@ pages.forEach((element, index) => {
 
 // CAMBIO PAGINA DA PAGINA 1 A PAGINA 2
 button_page_forward.addEventListener("click", function(event){
-    if (current_page < 6){
+    if (current_page < 7){
         event.preventDefault()
     
+        // quando passo da inserisci indirizzo a mostra indirizzo
+        if (current_page === 3){
+            const apiUrl = '/api/tomtom/geolocalize/';
+
+            const user_input = encodeURIComponent(address_input_field.value);
+            console.log(user_input)
+            // Make a GET request
+            fetch(apiUrl+user_input)
+            .then(response => {
+                if (!response.ok) {
+                    address_output_field.value = null;
+                    address_output_label.innerHTML = "Via non trovata, riprovare!"
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data.data.position);
+                address_output_field.value = data.data.address.freeformAddress;
+                address_output_label.innerHTML = data.data.address.freeformAddress;
+                latitude_output_field.value = data.data.position.lat;
+                longitude_output_field.value = data.data.position.lon;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
         // nascondo la pagina corrente
         pages[current_page].hidden = true;
         
@@ -47,3 +82,7 @@ window.changeSliderValue = function (element, label_id){
     }
     document.getElementById(label_id).innerHTML = value;
 }
+
+
+
+
