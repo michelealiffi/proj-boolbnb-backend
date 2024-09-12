@@ -21,6 +21,8 @@ const address_output_field = document.getElementById("result_address")
 const address_output_label = document.getElementById("result_address_label")
 const latitude_output_field = document.getElementById('latitude')
 const longitude_output_field = document.getElementById('longitude')
+const autocomplete_list = document.getElementById('autocomplete_list')
+
 
 pages.forEach((element, index) => {
     if (index != 0){
@@ -57,11 +59,13 @@ button_page_forward.addEventListener("click", function(event){
                 return
             }
 
+
+            // facciamo la chiamata all' api
             const apiUrl = '/api/tomtom/geolocalize/';
 
             const user_input = encodeURIComponent(address_input_field.value);
             console.log(user_input)
-            // Make a GET request
+            
             fetch(apiUrl+user_input)
             .then(response => {
                 if (!response.ok) {
@@ -80,6 +84,8 @@ button_page_forward.addEventListener("click", function(event){
             .catch(error => {
                 console.error('Error:', error);
             });
+
+
         }
 
         if (current_page === 5){
@@ -127,6 +133,49 @@ window.changeSliderValue = function (element, label_id){
     }
     document.getElementById(label_id).innerHTML = value;
 }
+
+
+
+
+// AUTOCOMPLETE
+window.get_autocompleted_data = function(){
+    if (address_input_field.value.length < 7){
+        return
+    }
+    
+    // facciamo la chiamata all' api
+    const apiUrl = '/api/tomtom/autocomplete/';
+    const user_input = encodeURIComponent(address_input_field.value);
+    
+    fetch(apiUrl+user_input)
+    .then(response => {
+        if (!response.ok) {
+            address_output_field.value = null;
+            console.log('something went wrong!')
+        }
+        return response.json();
+    })
+    .then(data => {
+        autocomplete_list.innerHTML = ""
+        if(data.data.results.length > 0){
+            data.data.results.forEach(function (element){
+                console.log(element.address.freeformAddress)
+                const autocomplete_field = document.createElement('li')
+                autocomplete_field.innerText = element.address.freeformAddress
+                autocomplete_list.appendChild(autocomplete_field)
+            })
+        }   
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+    // quando premo su un suggerimento aggiorno l'input
+autocomplete_list.addEventListener("click", function(event){
+    address_input_field.value = event.target.innerText
+})
+
 
 
 

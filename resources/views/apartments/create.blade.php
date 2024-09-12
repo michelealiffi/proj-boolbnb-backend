@@ -103,8 +103,12 @@
                             <div class="mb-5">
                                 <label for="address" class="form-label fw-bold">Inserisci via, città e cap del tuo
                                     appartamento</label>
-                                <input type="text" class="form-control text-center" id="address"
+                                <input list="datalistOptions" autocomplete="off" oninput="get_autocompleted_data()"
+                                    type="text" class="form-control text-center" id="address"
                                     placeholder="via Giacomo Rotondo 12, Marte 01234">
+                                <ul id="autocomplete_list">
+
+                                </ul>
                             </div>
 
                         </div>
@@ -115,7 +119,7 @@
                         <div class="col">
                             <h2>A noi risulta che ti trovi qui, verifica che sia corretto!</h2>
 
-                            {{-- INPUT INDIRIZZO --}}
+                            {{-- SHOW INDIRIZZO --}}
                             <div class="mb-5">
                                 <label for="result_address" class="form-label fw-bold">La tua via è:</label>
                                 <h3 id="result_address_label">Caricamento, attendere prego...</h3>
@@ -123,7 +127,6 @@
                                 <input type="hidden" id="latitude" name="latitude">
                                 <input type="hidden" id="longitude" name="longitude">
                             </div>
-
                         </div>
                     </div>
 

@@ -17,4 +17,19 @@
         width: 100vw;
         margin: 0;
     }
+
+    #autocomplete_list{
+        list-style-type: none;
+        padding-left: 0;
+        li{
+            border: 1px solid black;
+            border-top: 0px;
+            border-radius: 0.3rem;
+            cursor: pointer;
+
+            &:hover{
+                background-color: rgba(123, 211, 255, 0.225);
+            }
+        }
+    }
 }
