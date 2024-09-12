@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('tomtom/geolocalize/{search}', [TomTom::class, 'geolocalize']);
+Route::get('tomtom/autocomplete/{search}', [TomTom::class, 'autocomplete']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
