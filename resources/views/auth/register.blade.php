@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@push('script')
+    <!-- Usando Vite -->
+    @vite(['resources/js/auth/register.js'])
+@endpush
+
 @section('content')
     <div class="container mt-4">
         <div class="row justify-content-center">
@@ -8,7 +13,7 @@
                     <div class="card-header">{{ __('Register') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}">
+                        <form id="register-form" method="POST" action="{{ route('register') }}">
                             @csrf
 
                             <div class="mb-4 row">
@@ -108,7 +113,7 @@
 
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button id="submit-button" type="submit" class="btn btn-primary">
                                         {{ __('Register') }}
                                     </button>
                                 </div>
