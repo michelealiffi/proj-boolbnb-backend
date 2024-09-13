@@ -52,7 +52,7 @@ class MessageController extends Controller
      */
     public function edit(Message $message)
     {
-        return view('messages.edit', compact('message'));
+        //
     }
 
     /**
