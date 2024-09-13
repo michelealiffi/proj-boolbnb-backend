@@ -17,14 +17,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('welcome');
     })->name('home');
 
+    Route::get('/apartments/create', [ApartmentController::class, 'create'])->name('apartments.create');
+    Route::post('/apartments', [ApartmentController::class, 'store'])->name('apartments.store');
+});
+
+Route::middleware('auth', 'hasApartments')->group(function () {
+
     // ROTTE APPARTAMENTO
-    Route::resource('apartments', ApartmentController::class)->parameters(['apartments' => 'apartment:slug']);
+    Route::get('/apartments', [ApartmentController::class, 'index'])->name('apartments.index');
+    Route::get('/apartments/{apartment}', [ApartmentController::class, 'show'])->name('apartments.show');
+    Route::put('/apartments/{apartment}', [ApartmentController::class, 'update'])->name('apartments.update');
+    Route::patch('/apartments/{apartment}', [ApartmentController::class, 'update'])->name('apartments.update');
+    Route::delete('/apartments/{apartment}', [ApartmentController::class, 'destroy'])->name('apartments.destroy');
+    Route::get('/apartments/{apartment}/edit', [ApartmentController::class, 'edit'])->name('apartments.edit');
 
     // ROTTE PROFILO
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
