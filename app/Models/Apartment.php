@@ -40,6 +40,8 @@ class Apartment extends Model
 
     public static function createUniqueSlug($name, $id = 0)
     {
+        $newSlug = "";
+
         // Genera lo slug base
         $slug = Str::slug($name);
 
@@ -54,7 +56,7 @@ class Apartment extends Model
             $count++;
         }
 
-        return $slugExists ? $newSlug : $slug;
+        return $newSlug ? $newSlug : $slug;
     }
 
     public function services()
@@ -74,5 +76,3 @@ class Apartment extends Model
         return $this->belongsTo(User::class);
     }
 }
-
-

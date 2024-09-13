@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Apartment;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,13 +20,10 @@ class ApartmentSeeder extends Seeder
         $users = User::all();
         if (count($users) > 0) {
 
-            Schema::disableForeignKeyConstraints();
-
-            DB::table('apartments')->insert([
+            $apartments = [
                 [
                     'title' => 'Monolocale moderno vicino alla stazione',
                     'user_id' => $users[0]->id,
-                    'slug' => 'monolocale-moderno-vicino-alla-stazione',
                     'description' => 'Monolocale arredato con tutti i comfort, situato a due passi dalla stazione centrale.',
                     'price' => 50,
                     'rooms' => 1,
@@ -40,7 +38,6 @@ class ApartmentSeeder extends Seeder
                 [
                     'title' => 'Ampio bilocale con giardino privato',
                     'user_id' => $users[0]->id,
-                    'slug' => 'ampio-bilocale-con-giardino-privato',
                     'description' => 'Bilocale immerso nel verde, ideale per famiglie e coppie, con ampio giardino.',
                     'price' => 75,
                     'rooms' => 2,
@@ -55,7 +52,6 @@ class ApartmentSeeder extends Seeder
                 [
                     'title' => 'Trilocale in zona tranquilla con parcheggio',
                     'user_id' => $users[0]->id,
-                    'slug' => 'trilocale-in-zona-tranquilla-con-parcheggio',
                     'description' => 'Trilocale luminoso in zona residenziale, con parcheggio privato e terrazza.',
                     'price' => 100,
                     'rooms' => 3,
@@ -70,7 +66,6 @@ class ApartmentSeeder extends Seeder
                 [
                     'title' => 'Appartamento con terrazzo vista mare',
                     'user_id' => $users[0]->id,
-                    'slug' => 'appartamento-con-terrazzo-vista-mare',
                     'description' => 'Ampio appartamento con vista mozzafiato sul mare, terrazzo spazioso e arredato.',
                     'price' => 150,
                     'rooms' => 4,
@@ -85,7 +80,6 @@ class ApartmentSeeder extends Seeder
                 [
                     'title' => 'Attico lussuoso con piscina privata',
                     'user_id' => $users[0]->id,
-                    'slug' => 'attico-lussuoso-con-piscina-privata',
                     'description' => 'Attico di lusso nel centro di Roma, con piscina privata e vista panoramica.',
                     'price' => 250,
                     'rooms' => 5,
@@ -100,7 +94,6 @@ class ApartmentSeeder extends Seeder
                 [
                     'title' => 'Loft industriale nel cuore di Firenze',
                     'user_id' => $users[0]->id,
-                    'slug' => 'loft-industriale-nel-cuore-di-firenze',
                     'description' => 'Loft in stile industriale con finiture di pregio, situato nel cuore di Firenze.',
                     'price' => 120,
                     'rooms' => 1,
@@ -112,9 +105,123 @@ class ApartmentSeeder extends Seeder
                     'longitude' => 11.255814,
                     'is_visible' => true,
                 ],
-            ]);
+                [
+                    'title' => 'Monolocale moderno vicino alla stazione',
+                    'user_id' => $users[0]->id,
+                    'description' => 'Monolocale arredato con tutti i comfort, situato a due passi dalla stazione centrale.',
+                    'price' => 50,
+                    'rooms' => 1,
+                    'bathrooms' => 1,
+                    'square_meters' => 40,
+                    'address' => 'Via Torino 10, Milano',
+                    'image' => 'https://living.corriere.it/wp-content/uploads/2022/03/03-monolocale-milano-archventil-livingcorriere.jpg',
+                    'latitude' => 45.464203,
+                    'longitude' => 9.189982,
+                    'is_visible' => true,
+                ],
+                [
+                    'title' => 'Bilocale con vista sul Duomo',
+                    'user_id' => $users[1]->id,
+                    'description' => 'Bilocale spazioso con una splendida vista sul Duomo di Milano.',
+                    'price' => 120,
+                    'rooms' => 2,
+                    'bathrooms' => 1,
+                    'square_meters' => 70,
+                    'address' => 'Piazza del Duomo 1, Milano',
+                    'image' => 'https://living.corriere.it/wp-content/uploads/2022/03/02-bilocale-duomo-milano.jpg',
+                    'latitude' => 45.464664,
+                    'longitude' => 9.190109,
+                    'is_visible' => true,
+                ],
+                [
+                    'title' => 'Appartamento elegante in Brera',
+                    'user_id' => $users[2]->id,
+                    'description' => 'Appartamento di lusso situato nel cuore del quartiere artistico di Brera.',
+                    'price' => 200,
+                    'rooms' => 3,
+                    'bathrooms' => 2,
+                    'square_meters' => 100,
+                    'address' => 'Via Brera 8, Milano',
+                    'image' => 'https://living.corriere.it/wp-content/uploads/2022/03/01-appartamento-brera-milano.jpg',
+                    'latitude' => 45.469290,
+                    'longitude' => 9.186519,
+                    'is_visible' => true,
+                ],
+                [
+                    'title' => 'Loft spazioso in zona Navigli',
+                    'user_id' => $users[3]->id,
+                    'description' => 'Loft moderno e spazioso, ideale per giovani professionisti, situato sui Navigli.',
+                    'price' => 150,
+                    'rooms' => 2,
+                    'bathrooms' => 1,
+                    'square_meters' => 90,
+                    'address' => 'Alzaia Naviglio Grande 22, Milano',
+                    'image' => 'https://living.corriere.it/wp-content/uploads/2022/03/04-loft-navigli-milano.jpg',
+                    'latitude' => 45.454134,
+                    'longitude' => 9.170063,
+                    'is_visible' => true,
+                ],
+                [
+                    'title' => 'Trilocale con terrazza in Porta Romana',
+                    'user_id' => $users[4]->id,
+                    'description' => 'Trilocale moderno con ampia terrazza, situato in zona Porta Romana.',
+                    'price' => 180,
+                    'rooms' => 3,
+                    'bathrooms' => 2,
+                    'square_meters' => 110,
+                    'address' => 'Corso di Porta Romana 43, Milano',
+                    'image' => 'https://living.corriere.it/wp-content/uploads/2022/03/05-trilocale-porta-romana-milano.jpg',
+                    'latitude' => 45.453964,
+                    'longitude' => 9.191162,
+                    'is_visible' => true,
+                ],
+                [
+                    'title' => 'Monolocale accogliente in zona Isola',
+                    'user_id' => $users[5]->id,
+                    'description' => 'Monolocale recentemente ristrutturato, ideale per studenti o giovani coppie.',
+                    'price' => 75,
+                    'rooms' => 1,
+                    'bathrooms' => 1,
+                    'square_meters' => 35,
+                    'address' => 'Via Garigliano 7, Milano',
+                    'image' => 'https://living.corriere.it/wp-content/uploads/2022/03/06-monolocale-isola-milano.jpg',
+                    'latitude' => 45.489072,
+                    'longitude' => 9.187720,
+                    'is_visible' => true,
+                ],
+                [
+                    'title' => 'Appartamento panoramico vicino al Castello Sforzesco',
+                    'user_id' => $users[6]->id,
+                    'description' => 'Appartamento con vista panoramica sul Castello Sforzesco e il Parco Sempione.',
+                    'price' => 170,
+                    'rooms' => 3,
+                    'bathrooms' => 2,
+                    'square_meters' => 95,
+                    'address' => 'Via Luca Beltrami 5, Milano',
+                    'image' => 'https://living.corriere.it/wp-content/uploads/2022/03/07-appartamento-castello-sforzesco.jpg',
+                    'latitude' => 45.469722,
+                    'longitude' => 9.179444,
+                    'is_visible' => true,
+                ],
+                [
+                    'title' => 'Bilocale moderno in zona Porta Garibaldi',
+                    'user_id' => $users[7]->id,
+                    'description' => 'Bilocale arredato in stile moderno, situato in prossimità di Porta Garibaldi.',
+                    'price' => 130,
+                    'rooms' => 2,
+                    'bathrooms' => 1,
+                    'square_meters' => 65,
+                    'address' => 'Corso Como 10, Milano',
+                    'image' => 'https://living.corriere.it/wp-content/uploads/2022/03/08-bilocale-porta-garibaldi-milano.jpg',
+                    'latitude' => 45.481476,
+                    'longitude' => 9.187491,
+                    'is_visible' => true,
+                ],
+            ];
 
-            Schema::enableForeignKeyConstraints();
+            foreach ($apartments as $apartment_data) {
+                Apartment::create($apartment_data);
+            }
         } else {
             echo ('Non ci sono utenti nel DB, impossibile generare gli appartamenti!');
             return;
