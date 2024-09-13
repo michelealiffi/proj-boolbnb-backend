@@ -3,7 +3,6 @@
 @section('content')
     <div class="container">
         <h1 class="my-2">Messages</h1>
-        <a href="{{ route('messages.create') }}" class="btn btn-primary my-2">Create New Message</a>
 
         @if (session('success'))
             <div class="alert alert-success">
@@ -26,7 +25,6 @@
                         <td>{{ $message->email }}</td>
                         <td>
                             <a href="{{ route('messages.show', $message->id) }}" class="btn btn-info">View</a>
-                            <a href="{{ route('messages.edit', $message->id) }}" class="btn btn-warning">Edit</a>
                             <form action="{{ route('messages.destroy', $message->id) }}" method="POST"
                                 style="display:inline-block;">
                                 @csrf

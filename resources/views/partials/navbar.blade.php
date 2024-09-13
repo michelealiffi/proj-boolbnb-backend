@@ -28,58 +28,37 @@
 
             <!-- Right Side Of Navbar -->
             <button class="btn btn-primary me-2">Back to Frontpage</button>
-            <ul class="navbar-nav ml-auto border border-2 rounded-5 shadow-sm">
-                <div class="container-fluid">
-                    <div class="dropdown">
-                        <button class="nav-link dropdown-toggle" type="button" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="navbar-toggler-icon"></span>
-                            <span class="fa-solid fa-user fa-lg ms-1"></span>
-                        </button>
-                        <ul class="dropdown-menu border border-2 rounded-4 bg-white">
-                            <!-- Authentication Links -->
-                            @guest
-                                <li class="nav-item">
-                                    <a class="dropdown-item fw-semibold" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                                @if (Route::has('register'))
-                                    <li class="nav-item">
-                                        <a class="dropdown-item fw-semibold"
-                                            href="{{ route('register') }}">{{ __('Register') }}</a>
-                                    </li>
-                                @endif
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Gift Card</a></li>
-                                <li><a class="dropdown-item" href="#">Affitta con Boolbnb</a></li>
-                                <li><a class="dropdown-item" href="#">Proponi un'esperienza</a></li>
-                                <li><a class="dropdown-item" href="#">Centro Assistenza</a></li>
-                            @else
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }}
-                                    </a>
+            <ul class="navbar-nav ms-auto">
+                <!-- Authentication Links -->
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                    @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                    @endif
+                @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }}
+                        </a>
 
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ url('dashboard') }}">{{ __('Dashboard') }}</a>
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ url('/apartments') }}">{{ __('Home') }}</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
-                            @endguest
-                        </ul>
-                    </div>
-                </div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @endguest
             </ul>
         </div>
     </div>
