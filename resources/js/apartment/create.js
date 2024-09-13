@@ -187,16 +187,19 @@ autocomplete_list.addEventListener("click", function(event){
 
 
 // GESTISCO LA SELEZIONE DEI SERVIZI
-// creo un array di servizi
-const services = []
+window.toggleService = function (target, service_id){
+    const checkBox = document.getElementById(`service-check-${service_id}`)
+    // inverto il valore
+    checkBox.checked = !checkBox.checked
 
-window.toggleService = function (service_id){
-    $service_index = services.indexOf(service_id);
-    if($service_index === -1){
-        services.push(service_id)
+    // modifico la visualizzazione
+    if (checkBox.checked){
+        target.classList.add('selected')
     } else {
-        services.splice($service_index, 1)
+        target.classList.remove('selected')
+
     }
+
 }
 
 

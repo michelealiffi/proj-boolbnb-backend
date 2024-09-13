@@ -149,9 +149,11 @@
                             <ul id="services-list" class="row row-cols-4 g-4">
                                 @foreach ($services as $service)
                                     <li class="col">
-                                        <div>
+                                        <div onclick="toggleService(this,{{ $service->id }})">
                                             <h3><i class="{{ $service->icon_name }}"></i></h3>
                                             <h4>{{ $service->name }}</h4>
+                                            <input type="checkbox" name="services[]" value="{{ $service->id }}"
+                                                class="d-none" id="service-check-{{ $service->id }}">
                                         </div>
                                     </li>
                                 @endforeach

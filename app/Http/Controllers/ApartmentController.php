@@ -33,29 +33,28 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'title' => 'required|string|max:230',
-        //     'description' => 'required|string',
-        //     'price' => 'required|integer|min:0',
-        //     'rooms' => 'required|integer|min:1|max:255',
-        //     'bathrooms' => 'required|integer|min:1|max:255',
-        //     'square_meters' => 'required|integer|min:1',
-        //     'address' => 'required|string|max:500',
-        //     'latitude' => 'required|numeric|between:-90,90',
-        //     'longitude' => 'required|numeric|between:-180,180',
-        //     'image' => 'nullable|string|max:2048',
-        //     'is_visible' => 'boolean',
-        // ]);
+        $request->validate([
+            'title' => 'required|string|max:230',
+            'description' => 'required|string',
+            'price' => 'required|integer|min:0',
+            'rooms' => 'required|integer|min:1|max:255',
+            'bathrooms' => 'required|integer|min:1|max:255',
+            'square_meters' => 'required|integer|min:1',
+            'address' => 'required|string|max:500',
+            'latitude' => 'required|numeric|between:-90,90',
+            'longitude' => 'required|numeric|between:-180,180',
+            'image' => 'required|string|max:2048',
+            'is_visible' => 'boolean',
+        ]);
 
 
         $apartment = new Apartment($request->all());
         $apartment->user_id = Auth::id();
-
-        // inseriti manualmente per mancanza di tom tom
-        // $apartment->latitude = random_int(1, 89);
-        // $apartment->longitude = random_int(1, 89);
-
         $apartment->save();
+
+        if ($request->has('services')) {
+            $apartment->services()->sync($request->services);
+        }
 
         return redirect()->route('apartments.index')->with('success', 'Apartment created successfully.');
     }
