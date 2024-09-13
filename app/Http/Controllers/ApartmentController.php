@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Apartment;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +23,9 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        return view('apartments.create');
+        $services = Service::all();
+
+        return view('apartments.create', compact('services'));
     }
 
     /**

@@ -186,6 +186,21 @@ autocomplete_list.addEventListener("click", function(event){
 })
 
 
+// GESTISCO LA SELEZIONE DEI SERVIZI
+// creo un array di servizi
+const services = []
+
+window.toggleService = function (service_id){
+    $service_index = services.indexOf(service_id);
+    if($service_index === -1){
+        services.push(service_id)
+    } else {
+        services.splice($service_index, 1)
+    }
+}
+
+
+
 
 
 

@@ -146,8 +146,16 @@
                     <div id="page-7" class="page row">
                         <div class="col">
                             <h2>Indicaci i servizi a disposizione dei clienti</h2>
-                            <ul>
-                                <li>Servizio 1</li>
+                            <ul id="services-list" class="row row-cols-4 g-4">
+                                @foreach ($services as $service)
+                                    <li class="col">
+                                        <div>
+                                            <h3><i class="{{ $service->icon_name }}"></i></h3>
+                                            <h4>{{ $service->name }}</h4>
+                                        </div>
+                                    </li>
+                                @endforeach
+
                             </ul>
                         </div>
                     </div>
