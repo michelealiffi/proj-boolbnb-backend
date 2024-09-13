@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Apartment;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -70,7 +71,9 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        return view('apartments.edit', compact('apartment'));
+        $services = Service::all();
+
+        return view('apartments.edit', compact('apartment', 'services'));
     }
 
 
@@ -79,6 +82,7 @@ class ApartmentController extends Controller
      */
     public function update(Request $request, Apartment $apartment)
     {
+
         $request->validate([
             'title' => 'required|string|max:230',
             'description' => 'required|string',
@@ -86,16 +90,21 @@ class ApartmentController extends Controller
             'rooms' => 'required|integer|min:1|max:255',
             'bathrooms' => 'required|integer|min:1|max:255',
             'square_meters' => 'required|integer|min:1',
-            'address' => 'required|string|max:500',
-            'latitude' => 'required|numeric|between:-90,90',
-            'longitude' => 'required|numeric|between:-180,180',
             'image' => 'nullable|string|max:2048',
             'is_visible' => 'boolean',
         ]);
 
-        $apartment->update($request->all());
+        $apartment->update($request->only('title', 'description', 'rooms', 'bathrooms', 'square_meters', 'price', 'image', 'is_visible'));
 
-        return redirect()->route('apartments.index')->with('success', 'Apartment updated successfully.');
+        // Sincronizza i servizi selezionati (solo se presenti)
+        if ($request->has('services')) {
+            $apartment->services()->sync($request->services);
+        } else {
+            // Se nessun servizio è stato selezionato, rimuovi tutti i servizi associati
+            $apartment->services()->detach();
+        }
+
+        return redirect()->route('apartments.show', $apartment->slug)->with('success', 'Apartment updated successfully.');
     }
 
 
