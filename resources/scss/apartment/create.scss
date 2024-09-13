@@ -1,4 +1,5 @@
 #apartment_create{
+
     .main-block{
         height: calc(100vh - 71px - 10vh );
         
@@ -29,6 +30,33 @@
 
             &:hover{
                 background-color: rgba(123, 211, 255, 0.225);
+            }
+        }
+    }
+
+    #services-list{
+        list-style-type: none;
+        li{
+            div{
+                box-shadow: 0px 0px 5px black;
+                border-radius: 0.4rem;
+                padding: .4rem 0;
+                transition: all .5s;
+
+                &.selected{
+                    box-shadow: 0px 0px 5px #ff385d;
+                    color: #ff385d;    
+                }
+
+                
+                &:hover{
+                    background-color: #ff385d;
+                    color: white;
+                }
+
+                i, h3, h4{
+                    pointer-events: none;
+                }
             }
         }
     }

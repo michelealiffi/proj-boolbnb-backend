@@ -186,6 +186,24 @@ autocomplete_list.addEventListener("click", function(event){
 })
 
 
+// GESTISCO LA SELEZIONE DEI SERVIZI
+window.toggleService = function (target, service_id){
+    const checkBox = document.getElementById(`service-check-${service_id}`)
+    // inverto il valore
+    checkBox.checked = !checkBox.checked
+
+    // modifico la visualizzazione
+    if (checkBox.checked){
+        target.classList.add('selected')
+    } else {
+        target.classList.remove('selected')
+
+    }
+
+}
+
+
+
 
 
 
