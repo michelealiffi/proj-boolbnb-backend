@@ -3,7 +3,6 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApartmentController;
 use App\Http\Controllers\MessageController;
-use App\Models\Apartment;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,24 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('home');
-
-    Route::get('/apartments/create', [ApartmentController::class, 'create'])->name('apartments.create');
-    Route::post('/apartments', [ApartmentController::class, 'store'])->name('apartments.store');
-});
 
 Route::middleware('auth', 'hasApartments')->group(function () {
 
     // ROTTE APPARTAMENTO
-    Route::get('/apartments', [ApartmentController::class, 'index'])->name('apartments.index');
-    Route::get('/apartments/{apartment}', [ApartmentController::class, 'show'])->name('apartments.show');
-    Route::put('/apartments/{apartment}', [ApartmentController::class, 'update'])->name('apartments.update');
-    Route::patch('/apartments/{apartment}', [ApartmentController::class, 'update'])->name('apartments.update');
-    Route::delete('/apartments/{apartment}', [ApartmentController::class, 'destroy'])->name('apartments.destroy');
-    Route::get('/apartments/{apartment}/edit', [ApartmentController::class, 'edit'])->name('apartments.edit');
+    Route::resource('apartments', ApartmentController::class)->parameters(['apartments' => 'apartment:slug']);
 
     // ROTTE PROFILO
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -45,6 +31,17 @@ Route::middleware('auth', 'hasApartments')->group(function () {
     Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
     Route::get('/messages/{message}', [MessageController::class, 'show'])->name('messages.show');
     Route::DELETE('/messages/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
+});
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('home');
+
+    // sovrascrivo le rotte che devono essere accessibili senza apartamenti
+    Route::get('/apartments/create', [ApartmentController::class, 'create'])->name('apartments.create');
+    Route::post('/apartments', [ApartmentController::class, 'store'])->name('apartments.store');
 });
 
 require __DIR__ . '/auth.php';
