@@ -51,6 +51,15 @@ button_page_forward.addEventListener("click", function(event){
                 return
             }
         }
+
+        if (current_page === 2){
+            if (validateTextField('square_meters') === false){
+                alert("I metri quadrati sono obbligatori")
+                return
+            }
+        }
+
+
         // quando passo da inserisci indirizzo a mostra indirizzo
         if (current_page === 3){
 

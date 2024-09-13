@@ -79,17 +79,12 @@
                             </div>
 
                             {{-- INPUT METRI QUADRATI --}}
-                            <div class="mb-2">
-                                <label for="squared-meters" class="form-label fw-bold">Da quanti metri quadrati è composto
-                                    il tuo appartamento?</label>
-                                <div>
-                                    <h4 class="d-inline" id="value-of-range-sm">10</h4>
-                                    <h4 class="d-inline">metri quadrati</h4>
-
-                                </div>
-                                <input type="range" class="form-range" min="10" max="255" step="1"
-                                    value="1" onchange="changeSliderValue(this, 'value-of-range-sm')"
-                                    id="squared-meters" name="square_meters">
+                            <div class="mb-5">
+                                <label for="square_meters" class="form-label fw-bold">Da quanti metri quadri è composto il
+                                    tuo
+                                    appartamento</label>
+                                <input type="number" class="form-control text-center" id="square_meters"
+                                    placeholder="metri quadrati..." name="square_meters">
                             </div>
                         </div>
                     </div>
