@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Boolbnb - Il tuo Appartamento')
+
 @section('content')
     <div class="container">
         @if (session('success'))

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Boolbnb - Crea Appartamento')
+
 @push('script')
     <!-- Usando Vite -->
     @vite(['resources/js/apartment/create.js'])

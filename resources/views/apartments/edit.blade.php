@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Boolbnb')
+@section('title', 'Boolbnb - Modifica Appartamento')
 
 @section('content')
     <div class="container">
