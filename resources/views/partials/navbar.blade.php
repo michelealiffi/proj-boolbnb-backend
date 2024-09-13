@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="{{ url('/apartments') }}">
+        <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
             <div class="logo_laravel d-flex">
                 <svg width="30" height="32" style="display: block;">
                     <path
@@ -21,9 +21,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="{{ url('/apartments') }}">{{ __('Home') }}</a>
-                </li>
+                @if (Auth::user() && count(Auth::user()->apartments) > 0)
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" href="{{ route('apartments.index') }}">Appartamenti</a>
+                    </li>
+                @endif
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -47,7 +49,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('/apartments') }}">{{ __('Home') }}</a>
+                            <a class="dropdown-item" href="{{ route('apartments.index') }}">{{ __('Home') }}</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
