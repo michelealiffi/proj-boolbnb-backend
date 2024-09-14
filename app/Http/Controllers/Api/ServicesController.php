@@ -11,7 +11,7 @@ class ServicesController extends Controller
     public function get_services()
     {
         $services = Service::all();
-        return request()->json([
+        return response()->json([
             'status' => "ok",
             'services' => $services
         ]);
