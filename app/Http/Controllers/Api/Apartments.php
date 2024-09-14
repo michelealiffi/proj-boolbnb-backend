@@ -70,7 +70,10 @@ class Apartments extends Controller
             $apartment->userName = User::where('id', $apartment->user_id)->first()->name;
         }
         // Restituisci il risultato come JSON
-        return response()->json($apartments);
+        return response()->json([
+            'status' => 'ok',
+            'apartments' => $apartments
+        ]);
     }
 
 
