@@ -32,10 +32,10 @@ class Apartments extends Controller
             ], 422); // Codice HTTP 422 Unprocessable Entity
         }
 
-
+        $query = urldecode($request->query('search'));
         $response = Http::withUrlParameters([
             'endpoint' => 'https://api.tomtom.com/search/2/geocode',
-            'query' => $request->search,
+            'query' => $query,
             'ext' => 'json',
             'myKey' => env('TOM_TOM_KEY'),
         ])->withoutVerifying()->get('{+endpoint}/{query}.{ext}?key={myKey}&limit=1');
@@ -52,7 +52,6 @@ class Apartments extends Controller
                 'apartments' => []
             ]); // Codice HTTP 422 Unprocessable Entity
         }
-
         // Longitudine e latitudine dell'utente
         $userLatitude = $searched_position->lat;
         $userLongitude = $searched_position->lon;
