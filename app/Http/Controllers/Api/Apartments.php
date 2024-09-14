@@ -64,7 +64,7 @@ class Apartments extends Controller
                 [$userLongitude, $userLatitude, $radius]
             )
             ->orderBy('distance', 'asc')
-            ->get();
+            ->paginate(10);
 
         foreach ($apartments as $apartment) {
             $apartment->userName = User::where('id', $apartment->user_id)->first()->name;
