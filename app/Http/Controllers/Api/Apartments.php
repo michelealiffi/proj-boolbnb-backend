@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Apartment;
 use App\Models\User;
+use App\Models\Visit;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -83,5 +84,42 @@ class Apartments extends Controller
         })->get();
 
         return json_encode($apartments);
+    }
+
+    public function store_visit(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'apartment_id' => 'required|integer',
+        ]);
+
+        // Se la validazione fallisce
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Bisogna fornire un l ID di un appartamento.',
+                'errors' => $validator->errors()
+            ], 422); // Codice HTTP 422 Unprocessable Entity
+        }
+
+        $apartment = Apartment::where('id', $request->apartment_id)->exists();
+
+        if (!$apartment) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'L ID non corrisponde a nessun appartamento valido'
+            ], 422); // Codice HTTP 422 Unprocessable Entity
+        }
+
+        // prendo l'ip del client
+        $ip_address = $request->ip();
+
+        $visit = new Visit();
+        $visit->apartment_id = $request->apartment_id;
+        $visit->ip_address = $ip_address;
+        $visit->save();
+
+        return response()->json([
+            'status' => 'ok'
+        ]);
     }
 }
