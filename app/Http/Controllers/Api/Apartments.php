@@ -32,10 +32,10 @@ class Apartments extends Controller
             ], 422); // Codice HTTP 422 Unprocessable Entity
         }
 
-        $query = urldecode($request->query('search'));
+        $query_result = urldecode($request->query('search'));
         $response = Http::withUrlParameters([
             'endpoint' => 'https://api.tomtom.com/search/2/geocode',
-            'query' => $query,
+            'query' => $query_result,
             'ext' => 'json',
             'myKey' => env('TOM_TOM_KEY'),
         ])->withoutVerifying()->get('{+endpoint}/{query}.{ext}?key={myKey}&limit=1');
@@ -62,17 +62,28 @@ class Apartments extends Controller
             $radius = $request->range * 1000;
         }
 
-        // Query per ottenere gli appartamenti vicini
-        $apartments = Apartment::selectRaw("
-                id, title, image, price, user_id,
-                ST_Distance_Sphere(point(longitude, latitude), point(?, ?)) as distance
-            ", [$userLongitude, $userLatitude])
+        //prendo dalla request gli id
+        $services_id_list = $request->query('services');
+
+        $query = Apartment::selectRaw("
+        apartments.id, apartments.title, apartments.image, apartments.price, apartments.user_id,
+        ST_Distance_Sphere(point(apartments.longitude, apartments.latitude), point(?, ?)) as distance", [$userLongitude, $userLatitude])
+            ->join('apartment_service', 'apartments.id', '=', 'apartment_service.apartment_id')
             ->whereRaw(
-                "ST_Distance_Sphere(point(longitude, latitude), point(?, ?)) < ?",
+                "ST_Distance_Sphere(point(apartments.longitude, apartments.latitude), point(?, ?)) < ?",
                 [$userLongitude, $userLatitude, $radius]
             )
-            ->orderBy('distance', 'asc')
-            ->paginate(10);
+            ->groupBy('apartments.id')
+            ->orderBy('distance', 'asc');
+
+        // Verifica se la lista dei servizi non è vuota
+        if (!empty($services_id_list)) {
+            $query->whereIn('apartment_service.service_id', $services_id_list)
+                ->havingRaw('COUNT(DISTINCT apartment_service.service_id) >= ?', [count($services_id_list)]);
+        }
+
+        // Esegui la query e pagina i risultati
+        $apartments = $query->paginate(10);
 
         foreach ($apartments as $apartment) {
             $apartment->userName = User::where('id', $apartment->user_id)->first()->name;
