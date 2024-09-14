@@ -4,6 +4,8 @@ use App\Http\Controllers\Api\TomTom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Apartments as ApiApartments;
+use App\Http\Controllers\Api\ServicesController as ApiServicesController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,6 +20,8 @@ use App\Http\Controllers\Api\Apartments as ApiApartments;
 Route::get('apartments/search', [ApiApartments::class, 'search']);
 Route::get('apartments/sponsored', [ApiApartments::class, 'get_sponsored']);
 Route::post('apartments/add_visit', [ApiApartments::class, 'store_visit']);
+
+Route::get('services', [ApiServicesController::class, 'get_services']);
 
 Route::get('tomtom/geolocalize/{search}', [TomTom::class, 'geolocalize']);
 Route::get('tomtom/autocomplete/{search}', [TomTom::class, 'autocomplete']);
