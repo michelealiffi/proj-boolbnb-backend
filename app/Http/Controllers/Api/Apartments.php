@@ -83,7 +83,10 @@ class Apartments extends Controller
                 ->where('end_time', '>=', $currentDateTime);
         })->get();
 
-        return json_encode($apartments);
+        return response()->json([
+            'status' => 'ok',
+            'apartments' => $apartments
+        ]);
     }
 
     public function store_visit(Request $request)
