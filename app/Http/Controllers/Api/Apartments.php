@@ -96,7 +96,7 @@ class Apartments extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Bisogna fornire un l ID di un appartamento.',
+                'message' => 'Bisogna fornire un ID appartamento.',
                 'errors' => $validator->errors()
             ], 422); // Codice HTTP 422 Unprocessable Entity
         }
