@@ -145,10 +145,19 @@ window.changeSliderValue = function (element, label_id){
 
 
 
-
 // AUTOCOMPLETE
+let should_autocomplete = true;
+let timeoutToAutocomplete = null;
 window.get_autocompleted_data = function(){
-    if (address_input_field.value.length < 7){
+    if (!should_autocomplete){
+        if(timeoutToAutocomplete == null){
+            timeoutToAutocomplete = setTimeout(()=>{
+                should_autocomplete = true
+                timeoutToAutocomplete = null
+                get_autocompleted_data()
+            }, 1000)
+        }
+        console.log("non è il momento")
         return
     }
     
@@ -173,6 +182,7 @@ window.get_autocompleted_data = function(){
                 autocomplete_field.innerText = element.address.freeformAddress
                 autocomplete_list.appendChild(autocomplete_field)
             })
+            should_autocomplete = false;
         }   
     })
     .catch(error => {
