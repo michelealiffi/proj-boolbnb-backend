@@ -42,7 +42,16 @@ class Apartments extends Controller
 
 
         //posizione ricercata dall'utente
-        $searched_position = json_decode($response->body())->results[0]->position;
+        $response_results = json_decode($response->body())->results;
+        if (count($response_results) > 0) {
+            $searched_position = $response_results[0]->position;
+        } else {
+            return response()->json([
+                'status' => 'ok',
+                'message' => 'nessun riusltato trovato',
+                'apartments' => []
+            ]); // Codice HTTP 422 Unprocessable Entity
+        }
 
         // Longitudine e latitudine dell'utente
         $userLatitude = $searched_position->lat;
