@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Apartment;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 
@@ -68,5 +70,18 @@ class Apartments extends Controller
         }
         // Restituisci il risultato come JSON
         return response()->json($apartments);
+    }
+
+
+    public function get_sponsored()
+    {
+        $currentDateTime = Carbon::now();
+
+        $apartments = Apartment::whereHas('sponsors', function ($query) use ($currentDateTime) {
+            $query->where('start_time', '<=', $currentDateTime)
+                ->where('end_time', '>=', $currentDateTime);
+        })->get();
+
+        return json_encode($apartments);
     }
 }

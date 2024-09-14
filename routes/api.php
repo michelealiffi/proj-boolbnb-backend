@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\Apartments as ApiApartments;
 */
 
 Route::get('apartments/search', [ApiApartments::class, 'search']);
+Route::get('apartments/sponsored', [ApiApartments::class, 'get_sponsored']);
 
 Route::get('tomtom/geolocalize/{search}', [TomTom::class, 'geolocalize']);
 Route::get('tomtom/autocomplete/{search}', [TomTom::class, 'autocomplete']);
