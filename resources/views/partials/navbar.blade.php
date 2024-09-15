@@ -29,7 +29,7 @@
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <button class="btn btn-primary me-2">Back to Frontpage</button>
+            <a href="http://localhost:5173/" class="btn btn-primary me-2">Back to Frontpage</a>
             <ul class="navbar-nav ms-auto">
                 <!-- Authentication Links -->
                 @guest

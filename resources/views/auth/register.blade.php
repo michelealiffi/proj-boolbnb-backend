@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Boolbnb')
+
 @push('script')
     <!-- Usando Vite -->
     @vite(['resources/js/auth/register.js'])
