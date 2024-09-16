@@ -20,6 +20,8 @@ use App\Http\Controllers\Api\ServicesController as ApiServicesController;
 Route::get('apartments/search', [ApiApartments::class, 'search']);
 Route::get('apartments/sponsored', [ApiApartments::class, 'get_sponsored']);
 Route::post('apartments/add_visit', [ApiApartments::class, 'store_visit']);
+Route::get('apartments/info', [ApiApartments::class, 'show_apartment']);
+
 
 Route::get('services', [ApiServicesController::class, 'get_services']);
 

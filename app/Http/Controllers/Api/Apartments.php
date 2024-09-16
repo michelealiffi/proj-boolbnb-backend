@@ -147,4 +147,35 @@ class Apartments extends Controller
             'status' => 'ok'
         ]);
     }
+
+    public function show_apartment(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'apartment_id' => 'required|integer',
+        ]);
+
+        // Se la validazione fallisce
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Bisogna fornire un ID appartamento.',
+                'errors' => $validator->errors()
+            ], 422); // Codice HTTP 422 Unprocessable Entity
+        }
+
+        // controllo che esista l'appartamento corrispondente
+        $apartment = Apartment::where('id', $request->apartment_id)->with('services', 'user')->firstOrFail();
+
+        if (!$apartment) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'L ID non corrisponde a nessun appartamento valido'
+            ], 422); // Codice HTTP 422 Unprocessable Entity
+        }
+
+        return response()->json([
+            'status' => 'ok',
+            'apartment' => $apartment
+        ]);
+    }
 }
