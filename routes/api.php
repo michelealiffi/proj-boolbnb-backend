@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Apartments as ApiApartments;
 use App\Http\Controllers\Api\ServicesController as ApiServicesController;
-
+use App\Http\Controllers\Api\MessagesController as ApiMessagesController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,6 +22,7 @@ Route::get('apartments/sponsored', [ApiApartments::class, 'get_sponsored']);
 Route::post('apartments/add_visit', [ApiApartments::class, 'store_visit']);
 Route::get('apartments/info', [ApiApartments::class, 'show_apartment']);
 
+Route::post('messages/store', [ApiMessagesController::class, 'store_message']);
 
 Route::get('services', [ApiServicesController::class, 'get_services']);
 
