@@ -34,6 +34,7 @@ class ApartmentSeeder extends Seeder
                     'latitude' => 45.464203,
                     'longitude' => 9.189982,
                     'is_visible' => true,
+                    'beds' => 2
                 ],
                 [
                     'title' => 'Ampio bilocale con giardino privato',
@@ -48,6 +49,7 @@ class ApartmentSeeder extends Seeder
                     'latitude' => 45.070312,
                     'longitude' => 7.686856,
                     'is_visible' => true,
+                    'beds' => 4
                 ],
                 [
                     'title' => 'Trilocale in zona tranquilla con parcheggio',
@@ -62,6 +64,7 @@ class ApartmentSeeder extends Seeder
                     'latitude' => 44.494887,
                     'longitude' => 11.342616,
                     'is_visible' => true,
+                    'beds' => 3
                 ],
                 [
                     'title' => 'Appartamento con terrazzo vista mare',
@@ -76,6 +79,7 @@ class ApartmentSeeder extends Seeder
                     'latitude' => 40.851775,
                     'longitude' => 14.268124,
                     'is_visible' => true,
+                    'beds' => 6
                 ],
                 [
                     'title' => 'Attico lussuoso con piscina privata',
@@ -90,6 +94,7 @@ class ApartmentSeeder extends Seeder
                     'latitude' => 41.902783,
                     'longitude' => 12.496366,
                     'is_visible' => true,
+                    'beds' => 2
                 ],
                 [
                     'title' => 'Loft industriale nel cuore di Firenze',
@@ -104,6 +109,7 @@ class ApartmentSeeder extends Seeder
                     'latitude' => 43.769560,
                     'longitude' => 11.255814,
                     'is_visible' => true,
+                    'beds' => 1
                 ],
                 [
                     'title' => 'Monolocale moderno vicino alla stazione',
@@ -118,6 +124,7 @@ class ApartmentSeeder extends Seeder
                     'latitude' => 45.464203,
                     'longitude' => 9.189982,
                     'is_visible' => true,
+                    'beds' => 10
                 ],
                 [
                     'title' => 'Bilocale con vista sul Duomo',
@@ -132,6 +139,7 @@ class ApartmentSeeder extends Seeder
                     'latitude' => 45.464664,
                     'longitude' => 9.190109,
                     'is_visible' => true,
+                    'beds' => 6
                 ],
                 [
                     'title' => 'Appartamento elegante in Brera',
@@ -146,6 +154,7 @@ class ApartmentSeeder extends Seeder
                     'latitude' => 45.469290,
                     'longitude' => 9.186519,
                     'is_visible' => true,
+                    'beds' => 3
                 ],
                 [
                     'title' => 'Loft spazioso in zona Navigli',
@@ -160,6 +169,7 @@ class ApartmentSeeder extends Seeder
                     'latitude' => 45.454134,
                     'longitude' => 9.170063,
                     'is_visible' => true,
+                    'beds' => 2
                 ],
                 [
                     'title' => 'Trilocale con terrazza in Porta Romana',
@@ -174,6 +184,7 @@ class ApartmentSeeder extends Seeder
                     'latitude' => 45.453964,
                     'longitude' => 9.191162,
                     'is_visible' => true,
+                    'beds' => 9
                 ],
                 [
                     'title' => 'Monolocale accogliente in zona Isola',
@@ -188,6 +199,7 @@ class ApartmentSeeder extends Seeder
                     'latitude' => 45.489072,
                     'longitude' => 9.187720,
                     'is_visible' => true,
+                    'beds' => 12
                 ],
                 [
                     'title' => 'Appartamento panoramico vicino al Castello Sforzesco',
@@ -202,6 +214,7 @@ class ApartmentSeeder extends Seeder
                     'latitude' => 45.469722,
                     'longitude' => 9.179444,
                     'is_visible' => true,
+                    'beds' => 4
                 ],
                 [
                     'title' => 'Bilocale moderno in zona Porta Garibaldi',
@@ -216,6 +229,7 @@ class ApartmentSeeder extends Seeder
                     'latitude' => 45.481476,
                     'longitude' => 9.187491,
                     'is_visible' => true,
+                    'beds' => 1
                 ],
             ];
 

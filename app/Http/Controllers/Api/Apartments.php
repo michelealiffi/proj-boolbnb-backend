@@ -20,7 +20,9 @@ class Apartments extends Controller
     {
         $validator = Validator::make($request->all(), [
             'search' => 'required|string',
-            'range' => 'nullable|integer'
+            'range' => 'nullable|integer',
+            'beds' => 'nullable|integer',
+            'rooms' => 'nullable|integer'
         ]);
 
         // Se la validazione fallisce
@@ -62,17 +64,28 @@ class Apartments extends Controller
             $radius = $request->range * 1000;
         }
 
+        if ($request->beds == null) {
+            $request->merge(['beds' => 0]);
+        }
+
+        if ($request->rooms == null) {
+            $request->merge(['rooms' => 0]);
+        }
+
+
         //prendo dalla request gli id
         $services_id_list = $request->query('services');
 
         $query = Apartment::selectRaw("
-        apartments.id, apartments.title, apartments.image, apartments.price, apartments.user_id,
+        apartments.id, apartments.title, apartments.slug, apartments.image, apartments.price, apartments.user_id,
         ST_Distance_Sphere(point(apartments.longitude, apartments.latitude), point(?, ?)) as distance", [$userLongitude, $userLatitude])
             ->join('apartment_service', 'apartments.id', '=', 'apartment_service.apartment_id')
             ->whereRaw(
                 "ST_Distance_Sphere(point(apartments.longitude, apartments.latitude), point(?, ?)) < ?",
                 [$userLongitude, $userLatitude, $radius]
             )
+            ->where('rooms', '>=', $request->rooms)
+            ->where('beds', '>=', $request->beds)
             ->groupBy('apartments.id')
             ->orderBy('distance', 'asc');
 
