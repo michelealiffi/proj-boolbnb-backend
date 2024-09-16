@@ -151,20 +151,20 @@ class Apartments extends Controller
     public function show_apartment(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'apartment_id' => 'required|integer',
+            'apartment_slug' => 'required|string',
         ]);
 
         // Se la validazione fallisce
         if ($validator->fails()) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Bisogna fornire un ID appartamento.',
+                'message' => 'Bisogna fornire uno slug di un appartamento.',
                 'errors' => $validator->errors()
             ], 422); // Codice HTTP 422 Unprocessable Entity
         }
 
         // controllo che esista l'appartamento corrispondente
-        $apartment = Apartment::where('id', $request->apartment_id)->with('services', 'user')->firstOrFail();
+        $apartment = Apartment::where('slug', $request->apartment_slug)->with('services', 'user')->firstOrFail();
 
         if (!$apartment) {
             return response()->json([
