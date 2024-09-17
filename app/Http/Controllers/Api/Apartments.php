@@ -77,7 +77,7 @@ class Apartments extends Controller
         $services_id_list = $request->query('services');
 
         $query = Apartment::selectRaw("
-        apartments.id, apartments.title, apartments.slug, apartments.image, apartments.price, apartments.user_id,
+        apartments.id, apartments.title, apartments.slug, apartments.image, apartments.price, apartments.user_id, apartments.beds, apartments.rooms,
         ST_Distance_Sphere(point(apartments.longitude, apartments.latitude), point(?, ?)) as distance", [$userLongitude, $userLatitude])
             ->join('apartment_service', 'apartments.id', '=', 'apartment_service.apartment_id')
             ->whereRaw(
@@ -117,6 +117,10 @@ class Apartments extends Controller
             $query->where('start_time', '<=', $currentDateTime)
                 ->where('end_time', '>=', $currentDateTime);
         })->get();
+
+        foreach ($apartments as $apartment) {
+            $apartment->userName = User::where('id', $apartment->user_id)->first()->name;
+        }
 
         return response()->json([
             'status' => 'ok',
