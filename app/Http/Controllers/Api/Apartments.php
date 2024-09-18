@@ -40,7 +40,7 @@ class Apartments extends Controller
             'query' => $query_result,
             'ext' => 'json',
             'myKey' => env('TOM_TOM_KEY'),
-        ])->withoutVerifying()->get('{+endpoint}/{query}.{ext}?key={myKey}&limit=1');
+        ])->withoutVerifying()->get('{+endpoint}/{query}.{ext}?key={myKey}&limit=1&language=it-IT');
 
 
         //posizione ricercata dall'utente
