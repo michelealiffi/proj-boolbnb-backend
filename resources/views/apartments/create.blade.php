@@ -80,6 +80,15 @@
                                     id="bathrooms" name="bathrooms">
                             </div>
 
+                            <div class="mb-2">
+                                <label for="beds" class="form-label fw-bold">Quanti letti ha
+                                    il tuo appartamento?</label>
+                                <h4 id="value-of-range-beds">1</h4>
+                                <input type="range" class="form-range" min="1" max="30" step="1"
+                                    value="1" onchange="changeSliderValue(this, 'value-of-range-beds')" id="beds"
+                                    name="beds">
+                            </div>
+
                             {{-- INPUT METRI QUADRATI --}}
                             <div class="mb-5">
                                 <label for="square_meters" class="form-label fw-bold">Da quanti metri quadri è composto il

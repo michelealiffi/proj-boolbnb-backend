@@ -39,6 +39,7 @@ class ApartmentController extends Controller
             'price' => 'required|integer|min:0',
             'rooms' => 'required|integer|min:1|max:255',
             'bathrooms' => 'required|integer|min:1|max:255',
+            'beds' => 'required|integer|min:1|max:255',
             'square_meters' => 'required|integer|min:1',
             'address' => 'required|string|max:500',
             'latitude' => 'required|numeric|between:-90,90',
@@ -46,6 +47,7 @@ class ApartmentController extends Controller
             'image' => 'required|string|max:2048',
             'is_visible' => 'boolean',
         ]);
+
 
 
         $apartment = new Apartment($request->all());
