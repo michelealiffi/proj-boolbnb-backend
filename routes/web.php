@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApartmentController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\SponsorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,9 @@ Route::middleware('auth', 'hasApartments')->group(function () {
     Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
     Route::get('/messages/{message}', [MessageController::class, 'show'])->name('messages.show');
     Route::DELETE('/messages/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
+
+    // ROTTE SPONSORIZZAZIONI
+    Route::get('/boost', [SponsorController::class, 'index']);
 });
 
 
