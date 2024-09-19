@@ -12,17 +12,17 @@
 
         <h3 class="py-4">{{ $apartment->title }}</h3>
 
-        <div class="">
-            <img src="{{ $apartment->image }}" alt="{{ $apartment->title }}" class="img-fluid rounded-start"
-                style="width:600px">
-        </div>
+        <div class="d-flex">
+            <div id="img_section">
+                <img src="{{ $apartment->image }}" alt="{{ $apartment->title }}" class="img-fluid rounded" style="width:600px">
+            </div>
 
-        <div class="row">
-            <div class="col me-5">
+            <div id="apt_details" class="col ms-5 px-3 me-5">
                 <h5 class="pt-4">{{ $apartment->address }}</h5>
                 <div class="border-bottom pb-4">
-                    <span>{{ $apartment->rooms }} stanza/e &middot;</span>
-                    <span>{{ $apartment->bathrooms }} bagno/i &middot; </span>
+                    <span>{{ $apartment->rooms }} stanz{{ $apartment->rooms > 1 ? 'e' : 'a' }} &middot;</span>
+                    <span>{{ $apartment->beds }} lett{{ $apartment->beds > 1 ? 'i' : 'o' }} &middot;</span>
+                    <span>{{ $apartment->bathrooms }} bagn{{ $apartment->bathrooms > 1 ? 'i' : 'o' }} &middot; </span>
                     <span>{{ $apartment->square_meters }} m²</span>
                 </div>
 
@@ -43,25 +43,15 @@
                     </ul>
                 </div>
             </div>
-
-            <div class="col-4">
-                <div class="border rounded text-center px-4 py-4 mt-4">
-                    <div class="apartment-price">
-                        <p><strong>{{ $apartment->price }} €</strong> notte</p>
-                        <p>Prezzo per 5 notti: <strong>{{ $apartment->price * 5 }}€</strong></p>
-                        <p>Prezzo per una settimana: <strong>{{ $apartment->price * 7 }}€</strong></p>
-                    </div>
-                    <div>
-                        <p>Hai qualche domanda o vuoi prenotare? Contatta l'host! <i
-                                class="fa-solid fa-arrow-down-long fa-sm"></i></p>
-                        <button class="btn btn-secondary">Contatta</button>
-                        <p class="pt-4">Non riceverai alcun addebito in questa fase</p>
-                    </div>
-                </div>
-            </div>
         </div>
-
-
 
     </div>
 @endsection
+
+<style>
+    #apt_details {
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+}
+</style>

@@ -1,0 +1,34 @@
+#index_page {
+    
+    .card {
+        position: relative;
+        border: 1px solid #ddd;
+        overflow: hidden;
+
+        .card-img-container {
+        position: relative;
+        width: 100%;
+    
+            .apartment-img {
+                position: absolute;
+                z-index: 3;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                object-fit: cover;
+            }
+            
+            .card-img-top {
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
+    .transition_icon:hover {
+        transform: translateY(-0.125rem);
+    }
+    
+}
+

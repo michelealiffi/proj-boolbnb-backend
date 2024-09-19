@@ -3,17 +3,27 @@
 @section('title', 'Boolbnb')
 
 @section('content')
-    <div class="container">
-        <h1 class="my-4">List of Apartments</h1>
+    <div class="container" id="index_page">
+        <h1 class="my-4">La tua area</h1>
 
-        <div class="justify-content-between d-flex">
-
+        <div class="d-flex gap-4">
             {{-- Bottone per creare un nuovo appartamento --}}
-            <a href="{{ route('apartments.create') }}" class="btn btn-primary mb-4">Create New Apartment</a>
+            <a href="{{ route('apartments.create') }}" class="btn btn-outline mb-4 d-flex">
+                <div class="transition_icon transition" style="transition: transform 0.1s;">
+                    <i class="fa-solid fa-home" style="color: #FF385C;"></i>
+                    <i class="fa-solid fa-plus fa-xs position-relative " style="top: -10px; left: -5px; color: #FF385C"></i>   
+                </div>
+                <span>Aggiungi un appartamento</span>
+            </a>
 
             {{-- Box Messaggi --}}
-            <a href="{{ route('messages.index') }}" class="alert-link">
-                <i class="fa-solid fa-envelope fa-2xl"></i>{{ session('message') }}
+            <a href="{{ route('messages.index') }}" class="alert-link d-flex align-items-center text-decoration-none">
+                <div class="btn-outline btn mb-4">
+                    <i class="fa-solid fa-envelope transition transition_icon" style="transition: transform 0.1s; color: #FF385C"></i>
+                    <span>I tuoi messaggi</span>
+                </div>
+                {{ session('message') }}
+            
                 @if (session('unread_messages_count') > 0)
                     <span class="position-absolute top-20 start-75 translate-middle badge rounded-pill bg-danger">
                         {{ session('unread_messages_count') }}
@@ -21,52 +31,55 @@
                     </span>
                 @endif
             </a>
-
         </div>
 
         {{-- Verifica se ci sono appartamenti --}}
         @if ($apartments->count() > 0)
-            <div class="row">
+            <div class="row row-cols-lg-3 row-cols-xl-4 gx-4 gy-5">
                 @foreach ($apartments as $apartment)
                     <div class="col-md-4 mb-4">
-                        <div class="card-group p-3 border border-2 rounded-2">
-                            <div class="card-body">
+                        <div class="card border-0 h-100">
+                            <div class="card-img-container">
 
                                 {{-- Immagine dell'Appartamento --}}
-                                {{-- <img src="{{ asset('storage/' . $apartment->image) }}" class="card-img-top"
-                                    alt="{{ $apartment->title }}"> --}}
-                                <img src="{{ $apartment->image }}" class="card-img-top img-mod rounded-2"
-                                    alt="{{ $apartment->title }}">
-
+                                <img src="https://i.redd.it/zvo9zlpf3dk71.jpg" class="card-img-top rounded" alt="...">
+                                <img src="{{ $apartment->image }}" class="card-img-top rounded apartment-img" onerror="this.style.display='none'" alt="{{ $apartment->title }}">
+                            
+                            </div>
                                 {{-- Titolo e Prezzo dell'Appartamento --}}
-                                <h5 class="card-title mt-1 text-truncate">{{ $apartment->title }}</h5>
-                                <p class="card-text mt-1">Price: ${{ $apartment->price }}</p>
-
-                                <div class="justify-content-between d-flex">
-                                    <div>
-                                        {{-- Link per visualizzare l'appartamento --}}
-                                        <a href="{{ route('apartments.show', $apartment->slug) }}"
-                                            class="btn btn-info">View</a>
-
-                                        {{-- Link per modificare l'appartamento --}}
-                                        <a href="{{ route('apartments.edit', $apartment) }}"
-                                            class="btn btn-warning">Edit</a>
-
-                                        {{-- Form per eliminare l'appartamento --}}
-                                        <form action="{{ route('apartments.destroy', $apartment) }}" method="POST"
-                                            style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                        </form>
+                            <div class="d-flex flex-column">
+                                <div class="fw-medium">{{ $apartment->title }}</div>
+                                <div>
+                                    <div class="d-flex justify-content-between">
+                                        <span>{{ $apartment->address }}</span>
                                     </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex gap-1">
+                                            <span class="fw-medium">{{ $apartment->price }} &euro;</span><span>a notte</span>
+                                        </div>
 
-                                    <div>
-                                        {{-- Link per le statistiche dell'appartamento --}}
-                                        <a href="#" class="btn btn-secondary justify-items-md-end"
-                                            id="btnGroupAddon2">Statistics</a>
+                                        <div>
+                                            {{-- Icona per visualizzare l'appartamento --}}
+                                            <a href="{{ route('apartments.show', $apartment->slug) }}" class="me-2 text-decoration-none" style="color:rgba(42, 130, 212, 0.89)">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+        
+                                            {{-- Icona per modificare l'appartamento --}}
+                                            <a href="{{ route('apartments.edit', $apartment) }}" class="me-2 text-decoration-none" style="color:rgba(76, 138, 76, 0.877)">
+                                                <i class="fa-solid fa-pencil-alt"></i>
+                                            </a>
+        
+                                            {{-- Icona per eliminare l'appartamento --}}
+                                            <form action="{{ route('apartments.destroy', $apartment) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn p-0 text-decoration-none" style="background:none; border:none; color:#8f1505d0;">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -74,7 +87,7 @@
                 @endforeach
             </div>
         @else
-            <p>No apartments found.</p>
+            <p>Non hai inserito ancora nessun appartamento. Comincia ora!</p>
         @endif
     </div>
 @endsection
