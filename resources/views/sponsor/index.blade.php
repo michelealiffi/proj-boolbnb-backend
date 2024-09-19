@@ -65,26 +65,32 @@
                                     la policy di boolbnb.</p>
 
                                 <form class="form">
-                                    <select class="form-select" name="apartment_id">
+                                    <select class="form-select" name="apartment_id" id="apartmentSelect">
                                         <option value="">Seleziona l'appartamento da sponsorizzare</option>
                                         @foreach ($apartments as $apartment)
                                             <option value="{{ $apartment }}">{{ $apartment->title }}</option>
                                         @endforeach
                                     </select>
                                 </form>
+                                <div>
+                                    <script src="https://js.braintreegateway.com/web/dropin/1.43.0/js/dropin.js"></script>
+
+                                    <div id="dropin-container"></div>
+                                </div>
+
+                                <!-- Sezione di successo nascosta inizialmente -->
+                                <div id="success-message" style="display: none;">
+                                    <h4>Pagamento avvenuto con successo!</h4>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                                <button type="button" class="btn btn-primary">Sottoscrivi</button>
+                                <button type="button" class="btn btn-primary" id="submit-button">Sottoscrivi</button>
                             </div>
                         </div>
                     </div>
                 </div>
             @endforeach
-
-            <div class="col-12">
-
-            </div>
         </div>
     </div>
 
