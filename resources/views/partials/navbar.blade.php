@@ -23,9 +23,12 @@
             <ul class="navbar-nav me-auto">
                 @if (Auth::user() && count(Auth::user()->apartments) > 0)
                     <li class="nav-item">
-                        <a class="nav-link fw-semibold" href="{{ route('apartments.index') }}">Appartamenti</a>
+                        <a class="nav-link fw-semibold" href="{{ route('apartments.index') }}">La tua area</a>
                     </li>
                 @endif
+                <li>
+                    <a class="nav-link fw-semibold" href="http://localhost:5173/advanceSearch">Esplora</a>
+                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -41,6 +44,12 @@
                         </li>
                     @endif
                 @else
+                    <li>
+                        <a class="nav-link fw-semibold" href="">Sponsorizzazioni</a>
+                    </li>
+                    <li>
+                        <span class=" nav-link">|</span>
+                    </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
