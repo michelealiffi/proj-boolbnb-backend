@@ -3,6 +3,11 @@
 
 @section('title', 'Boolbnb')
 
+@push('script')
+    <!-- Usando Vite -->
+    @vite(['resources/js/sponsors/main.js'])
+@endpush
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -35,7 +40,43 @@
                             </p>
                         </div>
                         <div class="card-footer text-center">
-                            <button class="btn btn-primary w-100">Incominciamo a farci conoscere!</button>
+                            <button class="btn btn-primary w-100" data-bs-toggle="modal"
+                                data-bs-target="#modal-sponsor-{{ $sponsor->id }}">Inizia con soli
+                                {{ $sponsor->price }}&euro;</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                {{-- MODALE --}}
+                <div class="modal" tabindex="-1" id="modal-sponsor-{{ $sponsor->id }}">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-uppercase">PIANO {{ $sponsor->title }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Stai sottoscrivendo il piano {{ $sponsor->title }} che ti darà accesso a tutti i vantaggi
+                                    della sposnorizzazione per l'appartamento di tua scelta. La durata della
+                                    sponsorizzazione scelta è di {{ $sponsor->duration }} ore al prezzo di
+                                    {{ $sponsor->price }}&euro;. Premendo su sottoscrivi dichiari di aver letto e accettato
+                                    la policy di boolbnb.</p>
+
+                                <form class="form">
+                                    <select class="form-select" name="apartment_id">
+                                        <option value="">Seleziona l'appartamento da sponsorizzare</option>
+                                        @foreach ($apartments as $apartment)
+                                            <option value="{{ $apartment }}">{{ $apartment->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                                <button type="button" class="btn btn-primary">Sottoscrivi</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -46,4 +87,6 @@
             </div>
         </div>
     </div>
+
+
 @endsection
