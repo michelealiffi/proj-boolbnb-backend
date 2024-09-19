@@ -34,7 +34,7 @@ Route::middleware('auth', 'hasApartments')->group(function () {
     Route::DELETE('/messages/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
 
     // ROTTE SPONSORIZZAZIONI
-    Route::get('/boost', [SponsorController::class, 'index']);
+    Route::get('/sponsor', [SponsorController::class, 'index'])->name('sponsor.index');
 });
 
 
