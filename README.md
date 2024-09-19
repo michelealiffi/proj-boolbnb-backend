@@ -32,4 +32,3 @@ Non ne rimarrete delusi! :muscle: :muscle: :muscle:
 - Riccardo Tolusso
 - Michele Aliffi
 - Miriam Pecora
-- Antonio Zaccaria
