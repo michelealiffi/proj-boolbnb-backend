@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 255);
             $table->smallInteger('duration', unsigned: true);
-            $table->smallInteger('price', unsigned: true);
+            $table->float('price', total: 5, places: 2, unsigned: true);
             $table->timestamps();
         });
     }
