@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApartmentController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SponsorController;
+use App\Http\Controllers\StatisticController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +38,10 @@ Route::middleware('auth', 'hasApartments')->group(function () {
     Route::get('/sponsor', [SponsorController::class, 'create'])->name('sponsor.create');
     Route::get('/sponsor/list', [SponsorController::class, 'index'])->name('sponsor.index');
     Route::post('/sponsor', [SponsorController::class, 'store'])->name('sponsor.store');
+
+    // ROTTE STATISTICHE
+    Route::get('/statistics', [StatisticController::class, 'index'])->name('statistics.index');
+    Route::get('/apartments/{apartment}/statistics', [StatisticController::class, 'show'])->name('statistics.show');
 });
 
 

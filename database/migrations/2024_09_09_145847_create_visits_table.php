@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('visits', function (Blueprint $table) {
             $table->id();
             $table->foreignId('apartment_id')->constrained()->onDelete('cascade');
-            $table->char('ip_address', 50); // Campo IP address di tipo char(50)
+            $table->char('ip_address', 50);
             $table->timestamps();
         });
     }
