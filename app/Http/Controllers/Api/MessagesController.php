@@ -15,6 +15,7 @@ class MessagesController extends Controller
         // riceve email e contenuto del messaggio da un utente + id_appartmento, se i dati sono corretti allora crea un messaggio
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
+            'name' => 'required|string|max:200',
             'content' => 'required|string|max:2000',
             'apartment_id' => 'required|integer'
         ]);
