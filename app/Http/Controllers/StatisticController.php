@@ -19,9 +19,8 @@ class StatisticController extends Controller
         return view('statistics.index', compact('apartments'));
     }
 
-    public function show(Apartment $apartment)
+    public function show(Request $request, Apartment $apartment)
     {
-        // Mappa i numeri dei mesi ai nomi dei mesi
         $months = [
             1 => 'Gennaio',
             2 => 'Febbraio',
@@ -36,6 +35,13 @@ class StatisticController extends Controller
             11 => 'Novembre',
             12 => 'Dicembre'
         ];
+
+        // Recupera gli anni disponibili
+        $years = Visit::selectRaw('YEAR(created_at) as year')
+            ->where('apartment_id', $apartment->id)
+            ->distinct()
+            ->orderBy('year', 'asc')
+            ->pluck('year');
 
         // Raggruppa le visualizzazioni per mese e anno
         $visits = Visit::where('apartment_id', $apartment->id)
@@ -53,6 +59,6 @@ class StatisticController extends Controller
             ->orderBy('month', 'asc')
             ->get();
 
-        return view('statistics.show', compact('apartment', 'visits', 'messages', 'months'));
+        return view('statistics.show', compact('apartment', 'visits', 'messages', 'months', 'years'));
     }
 }
