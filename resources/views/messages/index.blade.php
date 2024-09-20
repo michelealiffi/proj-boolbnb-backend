@@ -26,7 +26,8 @@
                         <td>{{ $message->id }}</td>
                         <td>{{ $message->email }}</td>
                         <td>
-                            <a href="{{ route('messages.show', $message->id) }}" class="btn btn-info">View</a>
+                            <a href="{{ route('messages.show', [$message->apartment->slug, $message->id]) }}"
+                                class="btn btn-info">View</a>
                             <form action="{{ route('messages.destroy', $message->id) }}" method="POST"
                                 style="display:inline-block;">
                                 @csrf

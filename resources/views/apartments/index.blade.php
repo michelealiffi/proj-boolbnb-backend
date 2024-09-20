@@ -11,25 +11,9 @@
             <a href="{{ route('apartments.create') }}" class="btn btn-outline mb-4 d-flex">
                 <div class="transition_icon transition" style="transition: transform 0.1s;">
                     <i class="fa-solid fa-home" style="color: #FF385C;"></i>
-                    <i class="fa-solid fa-plus fa-xs position-relative " style="top: -10px; left: -5px; color: #FF385C"></i>   
+                    <i class="fa-solid fa-plus fa-xs position-relative " style="top: -10px; left: -5px; color: #FF385C"></i>
                 </div>
                 <span>Aggiungi un appartamento</span>
-            </a>
-
-            {{-- Box Messaggi --}}
-            <a href="{{ route('messages.index') }}" class="alert-link d-flex align-items-center text-decoration-none">
-                <div class="btn-outline btn mb-4">
-                    <i class="fa-solid fa-envelope transition transition_icon" style="transition: transform 0.1s; color: #FF385C"></i>
-                    <span>I tuoi messaggi</span>
-                </div>
-                {{ session('message') }}
-            
-                @if (session('unread_messages_count') > 0)
-                    <span class="position-absolute top-20 start-75 translate-middle badge rounded-pill bg-danger">
-                        {{ session('unread_messages_count') }}
-                        <span class="visually-hidden">unread messages</span>
-                    </span>
-                @endif
             </a>
         </div>
 
@@ -43,10 +27,11 @@
 
                                 {{-- Immagine dell'Appartamento --}}
                                 <img src="https://i.redd.it/zvo9zlpf3dk71.jpg" class="card-img-top rounded" alt="...">
-                                <img src="{{ $apartment->image }}" class="card-img-top rounded apartment-img" onerror="this.style.display='none'" alt="{{ $apartment->title }}">
-                            
+                                <img src="{{ $apartment->image }}" class="card-img-top rounded apartment-img"
+                                    onerror="this.style.display='none'" alt="{{ $apartment->title }}">
+
                             </div>
-                                {{-- Titolo e Prezzo dell'Appartamento --}}
+                            {{-- Titolo e Prezzo dell'Appartamento --}}
                             <div class="d-flex flex-column justify-content-between h-100">
                                 <div class="fw-medium">{{ $apartment->title }}</div>
                                 <div>
@@ -55,25 +40,35 @@
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <div class="d-flex gap-1">
-                                            <span class="fw-medium">{{ $apartment->price }} &euro;</span><span>a notte</span>
+                                            <span class="fw-medium">{{ $apartment->price }} &euro;</span><span>a
+                                                notte</span>
                                         </div>
 
                                         <div>
+                                            <a href="{{ route('messages.index', $apartment->slug) }}"
+                                                class="me-2 text-decoration-none" style="color:rgba(219, 25, 25, 0.877)">
+                                                <i class="fa-solid fa-envelope"></i>
+                                            </a>
+
                                             {{-- Icona per visualizzare l'appartamento --}}
-                                            <a href="{{ route('apartments.show', $apartment->slug) }}" class="me-2 text-decoration-none" style="color:rgba(42, 130, 212, 0.89)">
+                                            <a href="{{ route('apartments.show', $apartment->slug) }}"
+                                                class="me-2 text-decoration-none" style="color:rgba(42, 130, 212, 0.89)">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
-        
+
                                             {{-- Icona per modificare l'appartamento --}}
-                                            <a href="{{ route('apartments.edit', $apartment) }}" class="me-2 text-decoration-none" style="color:rgba(76, 138, 76, 0.877)">
+                                            <a href="{{ route('apartments.edit', $apartment) }}"
+                                                class="me-2 text-decoration-none" style="color:rgba(76, 138, 76, 0.877)">
                                                 <i class="fa-solid fa-pencil-alt"></i>
                                             </a>
-        
+
                                             {{-- Icona per eliminare l'appartamento --}}
-                                            <form action="{{ route('apartments.destroy', $apartment) }}" method="POST" style="display:inline;">
+                                            <form action="{{ route('apartments.destroy', $apartment) }}" method="POST"
+                                                style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn p-0 text-decoration-none" style="background:none; border:none; color:#8f1505d0;">
+                                                <button type="submit" class="btn p-0 text-decoration-none"
+                                                    style="background:none; border:none; color:#8f1505d0;">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
                                             </form>

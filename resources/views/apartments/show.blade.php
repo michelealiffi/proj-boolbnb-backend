@@ -12,9 +12,28 @@
 
         <h3 class="py-4">{{ $apartment->title }}</h3>
 
+        {{-- Box Messaggi --}}
+        <a href="{{ route('messages.index', $apartment->slug) }}"
+            class="alert-link d-flex align-items-center text-decoration-none">
+            <div class="btn-outline btn mb-4">
+                <i class="fa-solid fa-envelope transition transition_icon"
+                    style="transition: transform 0.1s; color: #FF385C"></i>
+                <span>I tuoi messaggiiiii</span>
+            </div>
+            {{ session('message') }}
+
+            @if (session('unread_messages_count') > 0)
+                <span class="position-absolute top-20 start-75 translate-middle badge rounded-pill bg-danger">
+                    {{ session('unread_messages_count') }}
+                    <span class="visually-hidden">unread messages</span>
+                </span>
+            @endif
+        </a>
+
         <div class="d-flex">
             <div id="img_section">
-                <img src="{{ $apartment->image }}" alt="{{ $apartment->title }}" class="img-fluid rounded" style="width:600px">
+                <img src="{{ $apartment->image }}" alt="{{ $apartment->title }}" class="img-fluid rounded"
+                    style="width:600px">
             </div>
 
             <div id="apt_details" class="col ms-5 px-3 me-5">
@@ -50,8 +69,8 @@
 
 <style>
     #apt_details {
-    border: 1px solid rgb(221, 221, 221);
-    border-radius: 12px;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
-}
+        border: 1px solid rgb(221, 221, 221);
+        border-radius: 12px;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+    }
 </style>

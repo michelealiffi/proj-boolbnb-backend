@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Apartment;
 use App\Models\Message;
 use Illuminate\Http\Request;
 
@@ -10,9 +11,13 @@ class MessageController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request, $apartment_slug)
     {
-        $messages = Message::all();
+        $apartment = Apartment::where('slug', $apartment_slug)->first();
+        if ($apartment == null) {
+            abort(404, "Appartamento e messaggi non trovati nel nostro sistema. Prova a ripetere la ricerca o contatta il nostro team di supporto tecnico.");
+        }
+        $messages = $apartment->messages;
         return view('messages.index', compact('messages'));
     }
 
@@ -42,7 +47,7 @@ class MessageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Message $message)
+    public function show($apartment, Message $message)
     {
         return view('messages.show', compact('message'));
     }
@@ -75,8 +80,9 @@ class MessageController extends Controller
      */
     public function destroy(Message $message)
     {
+        $apartment_slug = $message->apartment->slug;
         $message->delete();
-        return redirect()->route('messages.index')
+        return redirect()->route('messages.index', $apartment_slug)
             ->with('success', 'Message deleted successfully.');
     }
 }
