@@ -22,7 +22,9 @@ class Apartments extends Controller
             'search' => 'required|string',
             'range' => 'nullable|integer',
             'beds' => 'nullable|integer',
-            'rooms' => 'nullable|integer'
+            'rooms' => 'nullable|integer',
+            'square_meters' => 'nullable|integer',
+            'price' => 'nullable|integer'
         ]);
 
         // Se la validazione fallisce
@@ -72,6 +74,14 @@ class Apartments extends Controller
             $request->merge(['rooms' => 0]);
         }
 
+        if ($request->square_meters == null) {
+            $request->merge(['square_meters' => 0]);
+        }
+
+        if ($request->price == null) {
+            $request->merge(['price' => 0]);
+        }
+
 
         //prendo dalla request gli id
         $services_id_list = $request->query('services');
@@ -86,6 +96,8 @@ class Apartments extends Controller
             )
             ->where('rooms', '>=', $request->rooms)
             ->where('beds', '>=', $request->beds)
+            ->where('square_meters', '>=', $request->square_meters)
+            ->where('price', '>=', $request->price)
             ->groupBy('apartments.id')
             ->orderBy('distance', 'asc');
 
