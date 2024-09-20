@@ -15,28 +15,6 @@
 
         <hr>
 
-        <form id="filterForm" class="d-flex justify-content-center">
-            <div class="form-group mx-2">
-                <label for="year">Anno:</label>
-                <select class="form-select" id="year" name="year">
-                    @foreach ($years as $year)
-                        <option value="{{ $year }}">{{ $year }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group mx-2">
-                <label for="month">Mese:</label>
-                <select class="form-select" id="month" name="month">
-                    @foreach ($months as $key => $month)
-                        <option value="{{ $key }}">{{ $month }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <button class="btn btn-primary m-2 mt-4" type="submit">Filtra</button>
-        </form>
-
-        <hr>
-
         <div class="chart-container">
             <div class="chart">
                 <canvas id="visitsChart"></canvas>
