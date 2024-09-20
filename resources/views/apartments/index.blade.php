@@ -47,7 +47,7 @@
                             
                             </div>
                                 {{-- Titolo e Prezzo dell'Appartamento --}}
-                            <div class="d-flex flex-column">
+                            <div class="d-flex flex-column justify-content-between h-100">
                                 <div class="fw-medium">{{ $apartment->title }}</div>
                                 <div>
                                     <div class="d-flex justify-content-between">
