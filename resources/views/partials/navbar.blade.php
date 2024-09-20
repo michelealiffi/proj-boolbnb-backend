@@ -25,6 +25,9 @@
                     <li class="nav-item">
                         <a class="nav-link fw-semibold" href="{{ route('apartments.index') }}">La tua area</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" href="{{ route('statistics.index') }}">Le tue statistiche</a>
+                    </li>
                 @endif
                 <li>
                     <a class="nav-link fw-semibold" href="http://localhost:5173/advanceSearch">Esplora</a>

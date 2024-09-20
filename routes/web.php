@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApartmentController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SponsorController;
+use App\Http\Controllers\StatisticController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +36,10 @@ Route::middleware('auth', 'hasApartments')->group(function () {
 
     // ROTTE SPONSORIZZAZIONI
     Route::get('/sponsor', [SponsorController::class, 'index'])->name('sponsor.index');
+
+    // ROTTE STATISTICHE
+    Route::get('/statistics', [StatisticController::class, 'index'])->name('statistics.index');
+    Route::get('/apartments/{apartment}/statistics', [StatisticController::class, 'show'])->name('statistics.show');
 });
 
 

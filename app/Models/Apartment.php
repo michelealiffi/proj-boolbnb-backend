@@ -72,6 +72,16 @@ class Apartment extends Model
             ->withTimestamps();
     }
 
+    public function visits()
+    {
+        return $this->hasMany(Visit::class);
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
