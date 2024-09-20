@@ -61,7 +61,7 @@
 
                             {{-- INPUT STANZE --}}
                             <div class="mb-2">
-                                <label for="rooms" class="form-label fw-bold">Quante stanze da letto ha
+                                <label for="rooms" class="form-label fw-bold">Quante stanze ha
                                     il tuo
                                     appartamento?</label>
                                 <h4 id="value-of-range-3">1</h4>
@@ -81,7 +81,7 @@
                             </div>
 
                             <div class="mb-2">
-                                <label for="beds" class="form-label fw-bold">Quanti letti ha
+                                <label for="beds" class="form-label fw-bold">Quanti posti letto ha
                                     il tuo appartamento?</label>
                                 <h4 id="value-of-range-beds">1</h4>
                                 <input type="range" class="form-range" min="1" max="30" step="1"
