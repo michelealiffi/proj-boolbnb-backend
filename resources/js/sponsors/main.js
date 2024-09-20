@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const dropinContainer = modal.querySelector('#dropin-container');
             const button = modal.querySelector('#submit-button');
             const apartmentSelect = modal.querySelector('#apartmentSelect');
-
+            const form = modal.querySelector('form')
+            
             if (!button || !dropinContainer || !apartmentSelect) {
                 console.error("Elemento mancante nel modal.");
                 return;
@@ -33,8 +34,8 @@ document.addEventListener('DOMContentLoaded', function () {
                                 return;
                             }
                             // Invia payload.nonce al server
-                            console.log("Payment nonce:", payload.nonce);
-                            // Qui puoi inviare il nonce al server o gestire il pagamento
+                            // console.log("Payment nonce:", payload.nonce);
+                            form.submit()
                         });
                     });
                 });

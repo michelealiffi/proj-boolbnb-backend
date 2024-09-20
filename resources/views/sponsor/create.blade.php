@@ -64,11 +64,13 @@
                                     {{ $sponsor->price }}&euro;. Premendo su sottoscrivi dichiari di aver letto e accettato
                                     la policy di boolbnb.</p>
 
-                                <form class="form">
+                                <form class="form" method="POST" action="{{ route('sponsor.store') }}">
+                                    @csrf
+                                    <input type="hidden" name="sponsor_id" value="{{ $sponsor->id }}">
                                     <select class="form-select" name="apartment_id" id="apartmentSelect">
                                         <option value="">Seleziona l'appartamento da sponsorizzare</option>
                                         @foreach ($apartments as $apartment)
-                                            <option value="{{ $apartment }}">{{ $apartment->title }}</option>
+                                            <option value="{{ $apartment->id }}">{{ $apartment->title }}</option>
                                         @endforeach
                                     </select>
                                 </form>

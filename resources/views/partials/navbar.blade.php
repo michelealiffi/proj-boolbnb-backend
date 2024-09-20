@@ -45,7 +45,7 @@
                     @endif
                 @else
                     <li>
-                        <a class="nav-link fw-semibold" href="{{ route('sponsor.index') }}">Sponsorizzazioni</a>
+                        <a class="nav-link fw-semibold" href="{{ route('sponsor.create') }}">Sponsorizzazioni</a>
                     </li>
                     <li>
                         <span class=" nav-link">|</span>
