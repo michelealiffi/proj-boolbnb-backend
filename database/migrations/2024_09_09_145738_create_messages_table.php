@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('apartment_id')->constrained()->onDelete('cascade');
             $table->string('email', 400);
+            $table->string('name', 200);
             $table->string('content', 10000);
             $table->timestamps();
         });
