@@ -22,7 +22,6 @@ class Apartment extends Model
         'address',
         'latitude',
         'longitude',
-        'image',
         'is_visible'
     ];
 
