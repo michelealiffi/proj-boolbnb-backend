@@ -235,6 +235,9 @@ class ApartmentSeeder extends Seeder
                 ],
             ];
 
+            // cancello tutte le immagini presenti
+            Storage::disk('public')->delete(Storage::allFiles());
+
             foreach ($apartments as $apartment_data) {
                 $apartment = new Apartment($apartment_data);
 
