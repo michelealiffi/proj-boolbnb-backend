@@ -4,22 +4,23 @@
 
 @section('content')
     <div class="container" id="index_page">
-        <h1 class="my-4">La tua area</h1>
+        <h1 class="my-4 text-center text-md-start">La tua area</h1>
 
-        <div class="d-flex gap-4">
+        <div class="gap-4">
             {{-- Bottone per creare un nuovo appartamento --}}
-            <a href="{{ route('apartments.create') }}" class="btn btn-outline mb-4 d-flex">
+            <a href="{{ route('apartments.create') }}"
+                class="btn btn-outline mb-4 d-flex justify-content-center justify-content-md-start">
                 <div class="transition_icon transition" style="transition: transform 0.1s;">
                     <i class="fa-solid fa-home" style="color: #FF385C;"></i>
                     <i class="fa-solid fa-plus fa-xs position-relative " style="top: -10px; left: -5px; color: #FF385C"></i>
+                    <span>Aggiungi un appartamento</span>
                 </div>
-                <span>Aggiungi un appartamento</span>
             </a>
         </div>
 
         {{-- Verifica se ci sono appartamenti --}}
         @if ($apartments->count() > 0)
-            <div class="row row-cols-lg-3 row-cols-xl-4 gx-4 gy-5">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 gx-4 gy-5">
                 @foreach ($apartments as $apartment)
                     <div class="col-md-4 mb-4">
                         <div class="card border-0 h-100">

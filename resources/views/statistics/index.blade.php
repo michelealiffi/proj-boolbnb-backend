@@ -5,24 +5,25 @@
 @section('content')
     <div class="container">
         <h1 class="py-4">Statistiche degli Appartamenti</h1>
-        <table class="table text-center">
+        <table class="table text-center w-100">
             <thead>
                 <tr>
-                    <th>Appartamento</th>
-                    <th>Totale Visualizzazioni</th>
+                    <th class="col-7">Appartamento</th>
+                    <th>Totale Visite</th>
                     <th>Totale Messaggi</th>
-                    <th>Azioni</th>
+                    <th>Statistiche</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($apartments as $apartment)
                     <tr class="align-middle">
-                        <td class="d-flex gap-3 align-items-center"><img src="{{ $apartment->image }}" alt="">{{ $apartment->title }}</td>
+                        <td class="d-flex gap-3 align-items-center"><img
+                                src="{{ asset('/storage' . '/' . $apartment->image) }}" alt="">{{ $apartment->title }}
+                        </td>
                         <td>{{ $apartment->visits_count }}</td>
                         <td>{{ $apartment->messages_count }}</td>
                         <td>
-                            <a href="{{ route('statistics.show', $apartment->id) }}" class="py-1 button_magenta">Visualizza
-                                Statistiche</a>
+                            <a href="{{ route('statistics.show', $apartment->id) }}" class="py-1 button_magenta">Apri</a>
                         </td>
                     </tr>
                 @endforeach

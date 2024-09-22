@@ -11,7 +11,7 @@
             @method('PUT')
 
             <!-- Modifica titolo -->
-            <div class="form-group">
+            <div class="form-group pb-4">
                 <label for="title">
                     <h5>Titolo</h5>
                 </label>
@@ -20,53 +20,54 @@
             </div>
 
             <!-- Mostra ed elimina immagini esistenti -->
-            <div class="py-4">
-                <span>
+
+            <div class="row justify-content-between">
+                {{-- BLOCCO IMMAGINE --}}
+                <div class="col-12 col-md-5 mb-4 mb-md-0">
                     <h5>Immagine attuale</h5>
-                </span>
-                <div class="col d-flex justify-content-between">
-                    <div class="position-relative">
-                        <img src="{{ asset('/storage' . '/' . $apartment->image) }}" alt="{{ $apartment->title }}"
-                            class="img-fluid shadow_cards" style="width: 400px; height: 400px;">
-                    </div>
-                    <div class="col-7 py-2">
-                        <!-- Modifica URL dell'immagine -->
-                        <div class="form-group">
-                            <label for="image_url">
-                                <h5>NUOVA IMMAGINE: caricando un immagine la precedente verrà eliminata!</h5>
-                            </label>
-                            <input type="file" accept="image/jpeg, image/gif, image/png" name="image" id="image_url"
-                                class="form-control shadow_cards" value="{{ $apartment->image }}">
-                        </div>
-                        <!-- Descrizione -->
-                        <div class="pt-3 border-bottom">
-                            <label for="description">
-                                <h5>Descrizione</h5>
-                            </label>
-                            <textarea name="description" id="description" rows="5" class="form-control no-resize shadow_cards">{{ $apartment->description }}</textarea>
-                        </div>
-                        <!-- Indirizzo non modificabile -->
-                        <div>
-                            <label for="address" class="pt-3">
-                                <h5>Indirizzo</h5>
-                            </label>
-                            <input type="text" name="address" id="address" class="form-control shadow_cards"
-                                value="{{ $apartment->address }}" disabled>
-                        </div>
-                        <!-- Modifica visibilità -->
-                        <div class="form-group pt-3">
-                            <input type="checkbox" name="is_visible" id="is_visible" value="1"
-                                @if ($apartment->is_visible) checked @endif>
-                            <span class="form-check-label">Mostra l'appartamento</span>
-                        </div>
-
-                    </div>
+                    <img src="{{ asset('/storage' . '/' . $apartment->image) }}" alt="{{ $apartment->title }}"
+                        class="img-fluid shadow_cards" style="width: 400px; height: 400px;">
                 </div>
-            </div>
 
-            <div class="row">
-                <!-- Stanze, Bagni e Metri quadri -->
-                <div class="col">
+                {{-- BLOCCO IMMAGINE -> INDIRIZZO --}}
+                <div class="col-12 col-md-7 py-2">
+                    <!-- Modifica URL dell'immagine -->
+                    <div class="form-group">
+                        <label for="image_url">
+                            <h5>NUOVA IMMAGINE: caricando un immagine la precedente verrà eliminata!</h5>
+                        </label>
+                        <input type="file" accept="image/jpeg, image/gif, image/png" name="image" id="image_url"
+                            class="form-control shadow_cards" value="{{ $apartment->image }}">
+                    </div>
+
+                    <!-- Descrizione -->
+                    <div class="pt-3 border-bottom">
+                        <label for="description">
+                            <h5>Descrizione</h5>
+                        </label>
+                        <textarea name="description" id="description" rows="5" class="form-control no-resize shadow_cards">{{ $apartment->description }}</textarea>
+                    </div>
+
+                    <!-- Indirizzo non modificabile -->
+                    <div>
+                        <label for="address" class="pt-3">
+                            <h5>Indirizzo</h5>
+                        </label>
+                        <input type="text" name="address" id="address" class="form-control shadow_cards"
+                            value="{{ $apartment->address }}" disabled>
+                    </div>
+
+                    <!-- Modifica visibilità -->
+                    <div class="form-group pt-3">
+                        <input type="checkbox" name="is_visible" id="is_visible" value="1"
+                            @if ($apartment->is_visible) checked @endif>
+                        <span class="form-check-label">Mostra l'appartamento</span>
+                    </div>
+
+                </div>
+
+                <!-- BLOCCO Stanze, Bagni e Metri quadri -->
+                <div class="col-12 col-md-6">
                     <div class="border text-center px-4 py-4 mt-4 shadow_cards">
                         <div class="pb-3">
                             <label for="rooms">
@@ -99,8 +100,8 @@
                     </div>
                 </div>
 
-
-                <div class="col">
+                {{-- BLOCCO PREZZO --}}
+                <div class="col-12 col-md-6">
                     <div class="border text-center px-4 py-3 mt-4 shadow_cards">
                         <!-- Modifica prezzo -->
                         <div class="apartment-price">
@@ -131,6 +132,8 @@
                     </div>
                 </div>
             </div>
+
+
 
             <div class="my-4 py-3 text-center">
                 <button type="submit" class="button_magenta">Salva modifiche</button>

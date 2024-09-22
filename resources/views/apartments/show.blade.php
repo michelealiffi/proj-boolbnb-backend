@@ -30,13 +30,13 @@
             @endif
         </a>
 
-        <div class="d-flex">
-            <div id="img_section">
+        <div class="row row-cols-1 row-cols-md-2">
+            <div id="col">
                 <img src="{{ asset('/storage' . '/' . $apartment->image) }}" alt="{{ $apartment->title }}"
                     class="img-fluid rounded" style="width:600px">
             </div>
 
-            <div id="apt_details" class="col ms-5 px-3 me-5">
+            <div id="apt_details" class="col">
                 <h5 class="pt-4">{{ $apartment->address }}</h5>
                 <div class="border-bottom pb-4">
                     <span>{{ $apartment->rooms }} stanz{{ $apartment->rooms > 1 ? 'e' : 'a' }} &middot;</span>

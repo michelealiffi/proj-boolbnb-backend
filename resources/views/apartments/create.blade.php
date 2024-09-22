@@ -13,17 +13,19 @@
         <section id="services">
             <form action="{{ route('apartments.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="container-sm main-block text-center py-5 overflow-y-auto">
+                <div class="container-sm text-center py-5">
                     {{-- PAGINA 1 PREVIEW --}}
-                    <div id="page-1" class="page row row-cols-2">
+                    <div id="page-1" class="page row row-cols-1 row-cols-lg-2">
                         <div class="col">
-                            <h2>Creeremo il tuo appartamento</h2>
-                            <p>Durante la fase di creazione ti dovremo fare alcune domande per capire che tipo di
+                            <h2 class="display-3 mb-4">Creeremo il tuo appartamento</h2>
+                            <p class="fs-5 border-0">Durante la fase di creazione ti dovremo fare alcune domande per capire
+                                che
+                                tipo di
                                 appartamento possiedi, quali servizi offre, aggiungere qualche foto e dirci a quanto
                                 vuoi affittare.</p>
                         </div>
                         <div class="col">
-                            <video width="600" autoplay preload="auto">
+                            <video class="w-100" autoplay preload="auto">
                                 <source src="{{ asset('videos/create_page_1.mp4') }}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -158,7 +160,7 @@
                     <div id="page-7" class="page row">
                         <div class="col">
                             <h2>Indicaci i servizi a disposizione dei clienti</h2>
-                            <ul id="services-list" class="row row-cols-4 g-4">
+                            <ul id="services-list" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
                                 @foreach ($services as $service)
                                     <li class="col">
                                         <div onclick="toggleService(this,{{ $service->id }})">
@@ -197,17 +199,13 @@
 
                 </div>
 
-                <div class="container-full  progress-block">
-                    <div class="row">
-                        <div class="col-2 text-center">
-                            <button id="button-backward" class="btn btn-secondary">Indietro</button>
-                        </div>
-                        <div class="col-8"></div>
-                        <div class="col-2">
-                            <button id="button-forward" class="btn btn-primary">Procedi</button>
-                        </div>
+                <div class="container">
+                    <div class="d-flex justify-content-between px-1 px-md-5 py-2">
+                        <button id="button-backward" class="btn btn-secondary">Indietro</button>
+                        <button id="button-forward" class="btn btn-primary">Procedi</button>
                     </div>
                 </div>
+
             </form>
         </section>
     </div>

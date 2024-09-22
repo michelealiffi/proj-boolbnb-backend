@@ -15,61 +15,69 @@
 
         <hr>
 
-        <div class="chart-container">
-            <div class="chart">
-                <canvas id="visitsChart"></canvas>
+        <div class="row row-cols-1 row-cols-md-2 g-5">
+
+            {{-- GRAFICO DELLE VISUALIZZAZIONI --}}
+            <div class="col">
+                <canvas id="visitsChart" class="w-100"></canvas>
             </div>
-            <div class="chart">
-                <canvas id="messagesChart"></canvas>
+
+            {{-- GRAFICO DEI MESSAGGI --}}
+            <div class="col">
+                <canvas id="messagesChart" class="w-100"></canvas>
+            </div>
+
+            {{-- TABELLA VISUALIZZAZIONI --}}
+            <div class="col">
+
+                @if ($visits->isEmpty())
+                    <p class="alert alert-warning">Non ci sono visualizzazioni registrate per questo appartamento.</p>
+                @else
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Data (ANNO/MESE)</th>
+                                <th>Visualizzazioni Totali</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($visits as $visit)
+                                <tr>
+                                    <td>{{ $visit->year }}/{{ str_pad($visit->month, 2, '0', STR_PAD_LEFT) }}</td>
+                                    <td>{{ $visit->total }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @endif
+
+            </div>
+
+            {{-- MOSTRO I TOTALI O UN LOG SE ASSENTI --}}
+            <div class="col">
+                @if ($messages->isEmpty())
+                    <p class="alert alert-warning">Non ci sono messaggi registrati per questo appartamento.</p>
+                @else
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Data (ANNO/MESE)</th>
+                                <th>Messaggi Totali</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($messages as $message)
+                                <tr>
+                                    <td>{{ $message->year }}/{{ str_pad($message->month, 2, '0', STR_PAD_LEFT) }}</td>
+                                    <td>{{ $message->total }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @endif
             </div>
         </div>
 
-        <div class="d-flex">
-            @if ($visits->isEmpty())
-                <p>Non ci sono visualizzazioni registrate per questo appartamento.</p>
-            @else
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Data (YYYY/MM)</th>
-                            <th>Visualizzazioni Totali</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($visits as $visit)
-                            <tr>
-                                <td>{{ $visit->year }}/{{ str_pad($visit->month, 2, '0', STR_PAD_LEFT) }}</td>
-                                <td>{{ $visit->total }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            @endif
-
-            <hr>
-
-            @if ($messages->isEmpty())
-                <p>Non ci sono messaggi registrati per questo appartamento.</p>
-            @else
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Data (YYYY/MM)</th>
-                            <th>Messaggi Totali</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($messages as $message)
-                            <tr>
-                                <td>{{ $message->year }}/{{ str_pad($message->month, 2, '0', STR_PAD_LEFT) }}</td>
-                                <td>{{ $message->total }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            @endif
-
-        </div>
     </div>
 
     <style>
