@@ -32,8 +32,8 @@
 
         <div class="d-flex">
             <div id="img_section">
-                <img src="{{ $apartment->image }}" alt="{{ $apartment->title }}" class="img-fluid rounded"
-                    style="width:600px">
+                <img src="{{ asset('/storage' . '/' . $apartment->image) }}" alt="{{ $apartment->title }}"
+                    class="img-fluid rounded" style="width:600px">
             </div>
 
             <div id="apt_details" class="col ms-5 px-3 me-5">

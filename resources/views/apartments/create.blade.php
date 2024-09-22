@@ -11,7 +11,7 @@
 @section('content')
     <div id="apartment_create">
         <section id="services">
-            <form action="{{ route('apartments.store') }}" method="POST">
+            <form action="{{ route('apartments.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="container-sm main-block text-center py-5 overflow-y-auto">
                     {{-- PAGINA 1 PREVIEW --}}
@@ -146,7 +146,7 @@
                                 <label for="image" class="form-label fw-bold">Carica una foto che rappresenti al meglio
                                     il tuo appartamento. La qualità dell'immagine influisce moltissimo sulla possibilità di
                                     attirare più clienti</label>
-                                <input type="text" class="form-control text-center" id="image"
+                                <input type="file" accept="image/*" class="form-control text-center" id="image"
                                     placeholder="http://sito-di-immagini/la-mia-immagine.jpeg" name="image">
                             </div>
 

@@ -27,8 +27,9 @@
 
                                 {{-- Immagine dell'Appartamento --}}
                                 <img src="https://i.redd.it/zvo9zlpf3dk71.jpg" class="card-img-top rounded" alt="...">
-                                <img src="{{ $apartment->image }}" class="card-img-top rounded apartment-img"
-                                    onerror="this.style.display='none'" alt="{{ $apartment->title }}">
+                                <img src="{{ asset('/storage' . '/' . $apartment->image) }}"
+                                    class="card-img-top rounded apartment-img" onerror="this.style.display='none'"
+                                    alt="{{ $apartment->title }}">
 
                             </div>
                             {{-- Titolo e Prezzo dell'Appartamento --}}
