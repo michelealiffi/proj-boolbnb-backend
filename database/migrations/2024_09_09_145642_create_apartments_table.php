@@ -23,7 +23,7 @@ return new class extends Migration
             $table->smallInteger('square_meters');
             $table->string('address', 500);
             $table->float('latitude', 12, 10);
-            $table->float('longitude', 12, 10);
+            $table->float('longitude', 13, 10);
             $table->string('image', 2048);
             $table->boolean('is_visible')->default(true);
             $table->timestamps();
