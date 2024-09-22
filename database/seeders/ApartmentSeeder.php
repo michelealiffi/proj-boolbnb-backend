@@ -4,10 +4,12 @@ namespace Database\Seeders;
 
 use App\Models\Apartment;
 use App\Models\User;
+use Exception;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
 
 class ApartmentSeeder extends Seeder
 {
@@ -234,7 +236,25 @@ class ApartmentSeeder extends Seeder
             ];
 
             foreach ($apartments as $apartment_data) {
-                Apartment::create($apartment_data);
+                $apartment = new Apartment($apartment_data);
+
+                try {
+                    // scarico l'immagine
+                    $imageContent = file_get_contents($apartment_data['image']);
+                } catch (Exception $e) {
+                    $imageContent = file_get_contents("https://img.freepik.com/free-photo/cozy-living-room-modern-apartment_181624-60384.jpg");
+                }
+
+                // Genera un nome unico per l'immagine con estensione appropriata
+                $filename = 'img_' . uniqid() . '.jpg'; // Usa l'estensione appropriata in base al tipo di immagine
+
+                // la inserisco nella cartella storage/img
+                Storage::put('img/' . $filename, $imageContent);
+
+                // salvo la public path nel db
+                $apartment->image = 'img/' . $filename;
+
+                $apartment->save();
             }
         } else {
             echo ('Non ci sono utenti nel DB, impossibile generare gli appartamenti!');
