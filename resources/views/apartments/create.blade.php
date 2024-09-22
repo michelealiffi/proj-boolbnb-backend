@@ -146,7 +146,8 @@
                                 <label for="image" class="form-label fw-bold">Carica una foto che rappresenti al meglio
                                     il tuo appartamento. La qualità dell'immagine influisce moltissimo sulla possibilità di
                                     attirare più clienti</label>
-                                <input type="file" accept="image/*" class="form-control text-center" id="image"
+                                <input type="file" accept="image/jpeg, image/gif, image/png"
+                                    class="form-control text-center" id="image"
                                     placeholder="http://sito-di-immagini/la-mia-immagine.jpeg" name="image">
                             </div>
 
