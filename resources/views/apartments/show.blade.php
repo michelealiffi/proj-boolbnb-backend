@@ -18,7 +18,7 @@
             <div class="btn-outline btn mb-4">
                 <i class="fa-solid fa-envelope transition transition_icon"
                     style="transition: transform 0.1s; color: #FF385C"></i>
-                <span>I tuoi messaggiiiii</span>
+                <span>I tuoi messaggi</span>
             </div>
             {{ session('message') }}
 
