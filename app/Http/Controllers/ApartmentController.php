@@ -95,11 +95,24 @@ class ApartmentController extends Controller
             'rooms' => 'required|integer|min:1|max:255',
             'bathrooms' => 'required|integer|min:1|max:255',
             'square_meters' => 'required|integer|min:1',
-            'image' => 'nullable|string|max:2048',
+            'image' => 'nullable|image',
             'is_visible' => 'boolean',
         ]);
 
-        $apartment->update($request->only('title', 'description', 'rooms', 'bathrooms', 'square_meters', 'price', 'image', 'is_visible'));
+        $apartment->update($request->only('title', 'description', 'rooms', 'bathrooms', 'square_meters', 'price', 'is_visible'));
+
+        if ($request->image != null) {
+
+
+            // salvo l'immagine
+            $img_path = Storage::put('img', $request->image);
+
+
+
+            // aggiorno l'immagine nel db
+            $apartment->image = $img_path;
+            $apartment->save();
+        }
 
         // Sincronizza i servizi selezionati (solo se presenti)
         if ($request->has('services')) {
