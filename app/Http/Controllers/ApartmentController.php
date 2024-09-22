@@ -6,6 +6,7 @@ use App\Models\Apartment;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
 {
@@ -44,14 +45,15 @@ class ApartmentController extends Controller
             'address' => 'required|string|max:500',
             'latitude' => 'required|numeric|between:-90,90',
             'longitude' => 'required|numeric|between:-180,180',
-            'image' => 'required|string|max:2048',
+            'image' => 'required|image',
             'is_visible' => 'boolean',
         ]);
 
-
+        $img_path = Storage::put('img', $request->image);
 
         $apartment = new Apartment($request->all());
         $apartment->user_id = Auth::id();
+        $apartment->image = $img_path;
         $apartment->save();
 
         if ($request->has('services')) {
