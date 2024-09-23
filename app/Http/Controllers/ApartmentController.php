@@ -99,6 +99,10 @@ class ApartmentController extends Controller
             'is_visible' => 'boolean',
         ]);
 
+        if ($request->is_visible == null) {
+            $request->merge(['is_visible' => false]);
+        }
+
         $apartment->update($request->only('title', 'description', 'rooms', 'bathrooms', 'square_meters', 'price', 'is_visible'));
 
         if ($request->image != null) {

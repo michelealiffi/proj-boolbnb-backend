@@ -91,9 +91,16 @@ class Apartments extends Controller
         //prendo dalla request gli id
         $services_id_list = $request->query('services');
 
+        // ottengo la data attuale
+        $currentDateTime = Carbon::now();
+
+        // unisco le tabelle appartamenti con apartment_sponsor e apartment_service
+        // da apartment sponsor prendo il max end time perchè se c'è anche solo un end time nel futuro allora è sponsorizzato
         $query = Apartment::selectRaw("
-        apartments.id, apartments.title, apartments.slug, apartments.image, apartments.address, apartments.bathrooms, apartments.price, apartments.user_id, apartments.beds, apartments.rooms,
-        ST_Distance_Sphere(point(apartments.longitude, apartments.latitude), point(?, ?)) as distance", [$userLongitude, $userLatitude])
+    apartments.id, apartments.title, apartments.slug, apartments.image, apartments.address, apartments.bathrooms, apartments.price, apartments.user_id, apartments.beds, apartments.rooms,
+    ST_Distance_Sphere(point(apartments.longitude, apartments.latitude), point(?, ?)) as distance,
+    MAX(apartment_sponsor.end_time > ?) as is_sponsored", [$userLongitude, $userLatitude, $currentDateTime])
+            ->leftJoin('apartment_sponsor', 'apartments.id', '=', 'apartment_sponsor.apartment_id')
             ->join('apartment_service', 'apartments.id', '=', 'apartment_service.apartment_id')
             ->whereRaw(
                 "ST_Distance_Sphere(point(apartments.longitude, apartments.latitude), point(?, ?)) < ?",
@@ -104,13 +111,15 @@ class Apartments extends Controller
             ->where('square_meters', '>=', $request->square_meters)
             ->where('price', '>=', $request->min_price)
             ->where('price', '<=', $request->max_price)
+            ->where('is_visible', true)
             ->groupBy('apartments.id')
-            ->orderBy('distance', 'asc');
+            ->orderByDesc('is_sponsored') // Ordinamento per appartamenti sponsorizzati
+            ->orderBy('distance', 'asc'); // Ordinamento per distanza
 
-        // Verifica se la lista dei servizi non è vuota
+        // Verifica se la lista dei servizi non è vuota allora filtro per i servizi
         if (!empty($services_id_list)) {
             $query->whereIn('apartment_service.service_id', $services_id_list)
-                ->havingRaw('COUNT(DISTINCT apartment_service.service_id) >= ?', [count($services_id_list)]);
+                ->havingRaw('COUNT(DISTINCT apartment_service.service_id) = ?', [count($services_id_list)]);
         }
 
         // Esegui la query e pagina i risultati
