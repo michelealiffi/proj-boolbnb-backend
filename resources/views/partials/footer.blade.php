@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="pt-3 text-center">
-            <p class="pt-3">&copy; 2024 Boolbnb, Inc.
+            <p class="pt-3 custom_border">&copy; 2024 Boolbnb, Inc.
                 <a href="/">· Privacy</a> |
                 <a href="/">Termini e condizioni</a>
             </p>
@@ -43,7 +43,7 @@
     </div>
 </footer>
 
-<style>
+<style scoped>
     footer {
         background-color: rgb(245, 244, 244);
         color: #ff385c;
@@ -63,7 +63,7 @@
         margin-bottom: 10px;
     }
 
-    p {
+    .custom_border {
         border-top: 1px solid rgb(182, 177, 177);
     }
 </style>

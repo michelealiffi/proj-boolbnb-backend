@@ -3,22 +3,18 @@
 @section('title', 'Boolbnb - Messaggio')
 
 @section('content')
-    <div class="container">
-        <h1>Message Details</h1>
+    <div class="container py-4">
 
-        <div class="alert alert-info">
-            <i class="fa fa-info-circle"></i> You are viewing the details of this message.
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                <h3>{{ $message->email }}</h3>
+        <div id="message_box" class="rounded py-4 px-3">
+            <div class="pb-3">
+                <h4>Messaggio da: <span id="sender" class="fst-italic">{{ $message->name }}</span> </h4>
+                <h5>{{ $message->email }}</h5>
             </div>
-            <div class="card-body">
-                <p>{{ $message->content }}</p>
+            <div>
+                "<span class="fst-italic">{{ $message->content }}</span>"
             </div>
-            <div class="card-footer">
-                <strong>Apartment: </strong>{{ $message->apartment->title }}
+            <div class="pt-3">
+                <span><strong>Riferito a: </strong>{{ $message->apartment->title }}</span>
             </div>
         </div>
 
@@ -26,7 +22,30 @@
             style="display:inline-block;">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger">Delete Message</button>
+            <button type="submit" class="button_magenta">Delete Message</button>
         </form>
     </div>
 @endsection
+
+<style scoped>
+    #message_box {
+        border: 1px solid rgb(221, 221, 221);
+        border-radius: 12px;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+    }
+
+    #sender { 
+        color: #e91e63
+    }
+
+    .button_magenta {
+        background-color: #e91e63;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 50px
+        height: 55px;
+    }
+</style>
