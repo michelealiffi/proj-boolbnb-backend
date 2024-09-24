@@ -44,8 +44,11 @@ class SponsorController extends Controller
         // prendo l'ultima sottoscrizione effettuate per l'appartamento indicato
         $last_subscription = DB::table('apartment_sponsor')
             ->where('apartment_id', $request->apartment_id)
+            ->where('end_time', '>', Carbon::now())
             ->orderByDesc('end_time')
             ->first();
+
+        // se non esiste un record o se è nel passato
         if ($last_subscription == null) {
             $end_time = now();
         } else {
