@@ -60,11 +60,14 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('apartments.index') }}">{{ __('Home') }}</a>
-                            <a class="dropdown-item" href="http://localhost:5173/">Back to site</a>
+                            <a class="dropdown-item"
+                                href="{{ route('apartments.index') }}">{{ __('Pagina Principale') }}</a>
+                            <a class="dropdown-item"
+                                href="{{ route('sponsor.index') }}">{{ __('Le Mie Sponsorizzazioni') }}</a>
+                            <a class="dropdown-item" href="http://localhost:5173/">Ritorna al Sito</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                {{ __('Disconettiti') }}
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
