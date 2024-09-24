@@ -20,6 +20,7 @@ class SponsorController extends Controller
             ->join('sponsors', 'apartment_sponsor.sponsor_id', '=', 'sponsors.id')
             ->where('apartments.user_id', Auth::user()->id) // Filtra per l'utente loggato
             ->select('apartments.slug', 'sponsors.title as sponsor_title', 'sponsors.price', 'apartments.title as apartment_title', 'apartment_sponsor.start_time', 'apartment_sponsor.end_time')
+            ->orderByDesc('apartment_sponsor.created_at')
             ->get();
         return view('sponsor.index', compact('sponsorships'));
     }
