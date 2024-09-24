@@ -23,13 +23,14 @@ const latitude_output_field = document.getElementById('latitude')
 const longitude_output_field = document.getElementById('longitude')
 const autocomplete_list = document.getElementById('autocomplete_list')
 
-
+//NASCONDO TUTTE LE PAGINE TRANNE LA PRIMA
 pages.forEach((element, index) => {
     if (index != 0){
         element.hidden = true;
     }
 })
 
+// FUNZIONE CHE CONTROLLA IL REQUIRED DEI CAMPI DI TESTO
 function validateTextField(id, min = 0, max = null){
     const element = document.getElementById(id);
     if (element.value == false){

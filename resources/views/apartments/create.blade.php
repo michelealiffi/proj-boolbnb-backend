@@ -68,7 +68,7 @@
                                     appartamento?</label>
                                 <h4 id="value-of-range-3">1</h4>
                                 <input type="range" class="form-range" min="1" max="10" step="1"
-                                    value="1" onchange="changeSliderValue(this, 'value-of-range-3')" id="rooms"
+                                    value="1" oninput="changeSliderValue(this, 'value-of-range-3')" id="rooms"
                                     name="rooms">
                             </div>
 
@@ -78,7 +78,7 @@
                                     il tuo appartamento?</label>
                                 <h4 id="value-of-range-bathrooms">1</h4>
                                 <input type="range" class="form-range" min="1" max="6" step="1"
-                                    value="1" onchange="changeSliderValue(this, 'value-of-range-bathrooms')"
+                                    value="1" oninput="changeSliderValue(this, 'value-of-range-bathrooms')"
                                     id="bathrooms" name="bathrooms">
                             </div>
 
@@ -87,7 +87,7 @@
                                     il tuo appartamento?</label>
                                 <h4 id="value-of-range-beds">1</h4>
                                 <input type="range" class="form-range" min="1" max="30" step="1"
-                                    value="1" onchange="changeSliderValue(this, 'value-of-range-beds')" id="beds"
+                                    value="1" oninput="changeSliderValue(this, 'value-of-range-beds')" id="beds"
                                     name="beds">
                             </div>
 
@@ -191,7 +191,7 @@
                                     <h4 class="d-inline">&euro;</h4>
                                 </div>
                                 <input type="range" class="form-range" min="10" max="1000" step="5"
-                                    value="1" onchange="changeSliderValue(this, 'value-of-range-price')"
+                                    value="1" oninput="changeSliderValue(this, 'value-of-range-price')"
                                     id="rooms" name="price">
                             </div>
                         </div>
