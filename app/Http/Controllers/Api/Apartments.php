@@ -64,7 +64,7 @@ class Apartments extends Controller
         if ($request->range == null) {
             $radius = 20000; // Raggio in metri (20 km = 20000 metri)
         } else {
-            $radius = $request->range * 1000;
+            $radius = intval($request->range) * 1000;
         }
 
         if ($request->beds == null) {
