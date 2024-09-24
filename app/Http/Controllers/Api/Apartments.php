@@ -123,7 +123,7 @@ class Apartments extends Controller
         }
 
         // Esegui la query e pagina i risultati
-        $apartments = $query->paginate(10);
+        $apartments = $query->paginate(8);
 
         foreach ($apartments as $apartment) {
             $apartment->userName = User::where('id', $apartment->user_id)->first()->name;
