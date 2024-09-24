@@ -5,7 +5,7 @@
 
 @section('content')
     <div class="container-sm">
-        <h1 class="text-center mb-5 pt-5 text-uppercase display-4">Sponsorizzazioni Acuqistate</h1>
+        <h1 class="text-center mb-5 pt-5 text-uppercase display-4">Sponsorizzazioni Acquistate</h1>
 
         @if (session('message'))
             <div class="alert alert-success">
