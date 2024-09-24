@@ -147,30 +147,21 @@ window.changeSliderValue = function (element, label_id){
 
 
 // AUTOCOMPLETE
-let should_autocomplete = true;
-let timeoutToAutocomplete = null;
-window.get_autocompleted_data = function(){
-    if (!should_autocomplete){
-        if(timeoutToAutocomplete == null){
-            timeoutToAutocomplete = setTimeout(()=>{
-                should_autocomplete = true
-                timeoutToAutocomplete = null
-                get_autocompleted_data()
-            }, 1000)
-        }
-        console.log("non è il momento")
-        return
+let last_autocompleted_value = ""
+
+$autocomplete_interval = setInterval( function(){
+    if (address_input_field == null || address_input_field.value == null || address_input_field.value === last_autocompleted_value){
+        return;
     }
-    
     // facciamo la chiamata all' api
     const apiUrl = '/api/tomtom/autocomplete/';
     const user_input = encodeURIComponent(address_input_field.value);
-    
+    last_autocompleted_value = address_input_field.value;
     fetch(apiUrl+user_input)
     .then(response => {
         if (!response.ok) {
             address_output_field.value = null;
-            console.log('something went wrong!')
+            console.log('something went wrong!');
         }
         return response.json();
     })
@@ -189,8 +180,9 @@ window.get_autocompleted_data = function(){
     .catch(error => {
         console.error('Error:', error);
     });
-}
+}, 700)
 
+  
     // quando premo su un suggerimento aggiorno l'input
 autocomplete_list.addEventListener("click", function(event){
     address_input_field.value = event.target.innerText
