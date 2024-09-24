@@ -60,19 +60,26 @@ class MessageSeeder extends Seeder
         $apartments = Apartment::all();
         $apartments_length = count($apartments);
 
+        echo ("Creando i messaggi.");
         #se ci sono appartamenti
         if ($apartments_length > 0) {
-            foreach ($seedingData as $data) {
-                $message = new Message();
-                $message->apartment_id = $apartments[random_int(0, $apartments_length - 1)]->id;
-                $message->email = $data['email'];
-                $message->name = "Gianbattista";
-                $message->content = $data['content'];
-                $message->save();
+            foreach ($apartments as $apartment) {
+                echo (".");
+                foreach ($seedingData as $data) {
+                    if (random_int(0, 1)) {
+                        $message = new Message();
+                        $message->apartment_id = $apartment->id;
+                        $message->email = $data['email'];
+                        $message->name = "Gianbattista";
+                        $message->content = $data['content'];
+                        $message->save();
+                    }
+                }
             }
         } else {
             echo ("!!!!!!!!!!!!!!!\nNon ci sono appartamenti impossibile generare i messaggi.\n!!!!!!!!!!!!!!!");
             return;
         }
+        echo ("\nMessaggi creati\n");
     }
 }
