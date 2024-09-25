@@ -17,7 +17,7 @@ class MessageController extends Controller
         if ($apartment == null) {
             abort(404, "Appartamento e messaggi non trovati nel nostro sistema. Prova a ripetere la ricerca o contatta il nostro team di supporto tecnico.");
         }
-        $messages = $apartment->messages;
+        $messages = Message::where("apartment_id", $apartment->id)->orderByDesc("created_at")->get();
         return view('messages.index', compact('messages'));
     }
 
