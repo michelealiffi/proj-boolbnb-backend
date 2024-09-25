@@ -64,16 +64,14 @@
                                                 <i class="fa-solid fa-pencil-alt"></i>
                                             </a>
 
-                                            {{-- Icona per eliminare l'appartamento --}}
-                                            <form action="{{ route('apartments.destroy', $apartment) }}" method="POST"
-                                                style="display:inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="p-0 text-decoration-none"
-                                                    style="background:none; border:none; color:#8f1505d0;">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </button>
-                                            </form>
+
+                                            <button type="submit" class="p-0 text-decoration-none"
+                                                style="background:none; border:none; color:#8f1505d0;"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#confirmDeleteApartment-{{ $apartment->id }}">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+
                                         </div>
 
                                     </div>
@@ -81,10 +79,43 @@
                             </div>
                         </div>
                     </div>
+
+
+                    {{-- MODAL CONFIRM DELETE --}}
+                    <div class="modal fade" id="confirmDeleteApartment-{{ $apartment->id }}" tabindex="-1"
+                        aria-labelledby="MessageModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+
+                                <div class="modal-body text-center" v-show="response_message.show">
+                                    <h5>Sei sicuro di voler <b class="text-danger d-block">CANCELLARE
+                                            DEFINITIVAMENTE</b>
+                                        l'appartamento:
+                                    </h5>
+                                    <h5><u>{{ $apartment->title }}</u></h5>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                                    <form action="{{ route('apartments.destroy', $apartment) }}" method="POST"
+                                        style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Elimina</button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- END MODAL CONFIRM DELETE --}}
                 @endforeach
             </div>
         @else
             <p>Non hai inserito ancora nessun appartamento. Comincia ora!</p>
         @endif
+
+
+
     </div>
 @endsection
