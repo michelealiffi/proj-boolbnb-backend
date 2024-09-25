@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Apartment;
+use App\Models\Visit;
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -12,54 +15,25 @@ class VisitSeeder extends Seeder
     /**
      * Run the database seeds.
      */
+
     public function run(): void
     {
 
-        Schema::disableForeignKeyConstraints();
+        $max_visits = 100;
+        $min_visits = 80;
+        $apartments = Apartment::all();
+        $default_ip = "1.1.1.1";
 
-        DB::table('visits')->insert([
-            [
-                'apartment_id' => 1,
-                'ip_address' => '192.168.0.1',
-            ],
-            [
-                'apartment_id' => 2,
-                'ip_address' => '192.168.0.2',
-            ],
-            [
-                'apartment_id' => 3,
-                'ip_address' => '192.168.0.3',
-            ],
-            [
-                'apartment_id' => 4,
-                'ip_address' => '192.168.0.4',
-            ],
-            [
-                'apartment_id' => 5,
-                'ip_address' => '192.168.0.5',
-            ],
-            [
-                'apartment_id' => 6,
-                'ip_address' => '192.168.0.6',
-            ],
-            [
-                'apartment_id' => 7,
-                'ip_address' => '192.168.0.7',
-            ],
-            [
-                'apartment_id' => 8,
-                'ip_address' => '192.168.0.8',
-            ],
-            [
-                'apartment_id' => 9,
-                'ip_address' => '192.168.0.9',
-            ],
-            [
-                'apartment_id' => 10,
-                'ip_address' => '192.168.0.10',
-            ],
-        ]);
-
-        Schema::enableForeignKeyConstraints();
+        echo ("Generando le visite.");
+        foreach ($apartments as $apartment) {
+            echo (".");
+            $visits = [];
+            for ($i = 0; $i < random_int($min_visits, $max_visits); $i++) {
+                $random_date = Carbon::now()->subMonths(random_int(1, 6));
+                $visits[] = new Visit(['created_at' => $random_date, 'updated_at' => $random_date, 'ip_address' => $default_ip]);
+            }
+            $apartment->visits()->saveMany($visits);
+        }
+        echo ("\n");
     }
 }
