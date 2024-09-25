@@ -31,21 +31,32 @@ class ApartmentSponsorSeeder extends Seeder
         $data = [];
 
         # cicliamo gli appartamenti
-        foreach ($apartments as $apartment) {
-            #per ogni appartamento cicliamo gli sponsor
-            foreach ($sponsors as $sponsor) {
-                if (random_int(0, 1) === 0) {
-                    $start_time = Carbon::now()->subDays(random_int(1, 3));
-                    $end_time = Carbon::now()->addDays(random_int(1, 3));
 
-                    array_push($data, [
-                        'apartment_id' => $apartment->id,
-                        'sponsor_id' => $sponsor->id,
-                        'start_time' => $start_time,
-                        'end_time' => $end_time
-                    ]);
-                }
+        $count = 0;
+        foreach ($apartments as $apartment) {
+            #sponsorizziamo solo 1 appartamento ogni 16
+            if ($count % 16 === 0) {
+
+                #selezioniamo una sponsorizzazione casuale
+                $sponsor = $sponsors[random_int(0, count($sponsors) - 1)];
+
+                # impostiamo l'inizio
+                $start_time = Carbon::now();
+
+                # l'end time corrisponde all'inizio + la durata della sottoscrizione
+                $end_time = Carbon::now()->addHours($sponsor->duration);
+
+                # salvo il nuovo record
+                $apartment->sponsors()->attach($sponsor->id, [
+                    'start_time' => $start_time,
+                    'end_time' => $end_time,
+                    'created_at' => $start_time,
+                    'updated_at' => $start_time
+                ]);
             }
+
+            #incremento il contatore
+            $count += 1;
         }
 
         DB::table('apartment_sponsor')->insert($data);

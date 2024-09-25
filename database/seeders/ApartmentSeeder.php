@@ -28,11 +28,11 @@ class ApartmentSeeder extends Seeder
             // DATI PER GLI APPARTAMENTI
             $apartments = [
                 [
-                    'title' => 'Monolocale moderno vicino alla stazione',
+                    'title' => 'Monolocale moderno vicino a Milano Cadorna',
                     'description' => 'Monolocale arredato con tutti i comfort, situato a due passi dalla stazione centrale.',
-                    'address' => 'Via Torino 10, Milano',
-                    'latitude' => 45.464203,
-                    'longitude' => 9.189982,
+                    'address' => 'Piazza Luigi Cadorna, 20123 Milano',
+                    'latitude' => 45.4668,
+                    'longitude' => 9.1742,
                 ],
                 [
                     'title' => 'Bilocale elegante in centro a Roma',
@@ -945,10 +945,23 @@ class ApartmentSeeder extends Seeder
                 }
             }
 
+            # creo un contatore per ciclare gli utenti
+            $user_count = 0;
+
+            # il numero totale dei miei utenti
+            $max_users = count($users);
+
             // per ogni dato degli appartamenti genero un appartamento
             foreach ($apartments as $apartment_data) {
 
-                $apartment_data['user_id'] = $users[random_int(0, $users_count - 1)]->id; // ciclo sugli utenti per evitare che se mancano degli id il seed fallisca
+                $apartment_data['user_id'] = $users[$user_count]->id; // ciclo sugli utenti per evitare che se mancano degli id il seed fallisca
+
+                $user_count += 1;
+
+                # se ho finito gli utenti rincomincio dal primo
+                if ($user_count === $max_users) {
+                    $user_count = 0;
+                }
 
                 $apartment = new Apartment($apartment_data);
                 $apartment->price = random_int(10, 1000);
