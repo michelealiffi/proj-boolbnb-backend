@@ -149,7 +149,7 @@ window.changeSliderValue = function (element, label_id){
 // AUTOCOMPLETE
 let last_autocompleted_value = ""
 
-$autocomplete_interval = setInterval( function(){
+const autocomplete_interval = setInterval( function(){
     if (address_input_field == null || address_input_field.value == null || address_input_field.value === last_autocompleted_value){
         return;
     }
@@ -171,10 +171,10 @@ $autocomplete_interval = setInterval( function(){
             data.data.results.forEach(function (element){
                 console.log(element.address.freeformAddress)
                 const autocomplete_field = document.createElement('li')
+                autocomplete_field.classList = ['m-2', 'li-searchbar']
                 autocomplete_field.innerText = element.address.freeformAddress
                 autocomplete_list.appendChild(autocomplete_field)
             })
-            should_autocomplete = false;
         }   
     })
     .catch(error => {
@@ -185,6 +185,8 @@ $autocomplete_interval = setInterval( function(){
   
     // quando premo su un suggerimento aggiorno l'input
 autocomplete_list.addEventListener("click", function(event){
+    console.log("test");
+    
     address_input_field.value = event.target.innerText
 })
 

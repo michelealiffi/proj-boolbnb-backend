@@ -69,7 +69,7 @@
                                                 style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn p-0 text-decoration-none"
+                                                <button type="submit" class="p-0 text-decoration-none"
                                                     style="background:none; border:none; color:#8f1505d0;">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>

@@ -1,19 +1,34 @@
 #apartment_create{
 
-    #autocomplete_list{
-        list-style-type: none;
-        padding-left: 0;
-        li{
-            border: 1px solid black;
-            border-top: 0px;
-            border-radius: 0.3rem;
-            cursor: pointer;
+    #input-container{
 
-            &:hover{
-                background-color: rgba(123, 211, 255, 0.225);
+        margin-bottom: 30vh;
+
+        #address{
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+    
+        #autocomplete_list{
+            position: absolute;
+            width: 100%;
+            list-style-type: none;
+            padding-left: 0;
+            li{
+                border: 1px solid rgb(197, 197, 197);
+                border-top: 0px;
+                border-radius: 0;
+                padding: 0.5rem 0;
+                cursor: pointer;
+    
+                &:hover{
+                    background-color: rgba(123, 211, 255, 0.225);
+                }
+    
             }
         }
     }
+
 
     #services-list{
         list-style-type: none;

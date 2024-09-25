@@ -22,8 +22,9 @@
             style="display:inline-block;">
             @csrf
             @method('DELETE')
-            <button type="submit" class="button_magenta">Delete Message</button>
+            <a type="submit" class="button_magenta">Delete Message</a>
         </form>
+        <a type="submit" href="mailto:{{ $message->email }}" class="button_magenta">Rispondi via Email</a>
     </div>
 @endsection
 
@@ -34,7 +35,7 @@
         box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
     }
 
-    #sender { 
+    #sender {
         color: #e91e63
     }
 
@@ -45,7 +46,6 @@
         padding: 10px 20px;
         border-radius: 5px;
         cursor: pointer;
-        width: 50px
-        height: 55px;
+        width: 50px height: 55px;
     }
 </style>

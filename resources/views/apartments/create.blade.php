@@ -111,12 +111,14 @@
                             <div class="mb-5">
                                 <label for="address" class="form-label fw-bold">Inserisci via, città e cap del tuo
                                     appartamento</label>
-                                <input list="datalistOptions" autocomplete="off" oninput="get_autocompleted_data()"
-                                    type="text" class="form-control text-center" id="address"
-                                    placeholder="via Giacomo Rotondo 12, Marte 01234">
-                                <ul id="autocomplete_list">
+                                <div class="position-relative" id="input-container">
+                                    <input list="datalistOptions" autocomplete="off" type="text"
+                                        class="form-control text-center" id="address"
+                                        placeholder="via Giacomo Rotondo 12, Marte 01234">
+                                    <ul id="autocomplete_list">
 
-                                </ul>
+                                    </ul>
+                                </div>
                             </div>
 
                         </div>
