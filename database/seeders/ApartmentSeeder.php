@@ -448,11 +448,11 @@ class ApartmentSeeder extends Seeder
                     'longitude' => 14.251455,
                 ],
                 [
-                    'title' => 'Monolocale elegante a Palermo',
-                    'description' => 'Monolocale elegante con arredi moderni, situato in una zona centrale.',
-                    'address' => 'Via Libertà, Palermo',
-                    'latitude' => 38.125645,
-                    'longitude' => 13.370612,
+                    'title' => 'Monolocale moderno a Milano Lambrate',
+                    'description' => 'Monolocale moderno e luminoso, situato nel cuore di Lambrate, vicino alla stazione ferroviaria e alla metropolitana.',
+                    'address' => 'Via Ventura, Milano Lambrate',
+                    'latitude' => 45.482473,
+                    'longitude' => 9.237721,
                 ],
                 [
                     'title' => 'Appartamento ristrutturato a Milano',
