@@ -880,26 +880,16 @@ class ApartmentSeeder extends Seeder
 
             // LINK ALLE IMMAGINI PER GLI APPARTAMENTI
             $apartments_images = [
-                'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg',
-                'https://images.pexels.com/photos/37347/office-sitting-room-executive-sitting.jpeg',
-                'https://images.pexels.com/photos/275484/pexels-photo-275484.jpeg',
-                'https://images.pexels.com/photos/439227/pexels-photo-439227.jpeg',
-                'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg',
-                'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg',
-                'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg',
-                'https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg',
-                'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg',
-                'https://images.pexels.com/photos/531767/pexels-photo-531767.jpeg',
-                'https://images.pexels.com/photos/1069363/pexels-photo-1069363.jpeg',
-                'https://images.pexels.com/photos/279719/pexels-photo-279719.jpeg',
-                'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg',
-                'https://images.pexels.com/photos/1571456/pexels-photo-1571456.jpeg',
-                'https://images.pexels.com/photos/1723208/pexels-photo-1723208.jpeg',
-                'https://images.pexels.com/photos/276671/pexels-photo-276671.jpeg',
-                'https://images.pexels.com/photos/439211/pexels-photo-439211.jpeg',
-                'https://images.pexels.com/photos/1004682/pexels-photo-1004682.jpeg',
-                'https://images.pexels.com/photos/534172/pexels-photo-534172.jpeg',
-                'https://images.pexels.com/photos/689955/pexels-photo-689955.jpeg',
+                'https://cdn.pixabay.com/photo/2018/11/06/05/57/apartment-3797468_1280.jpg',
+                'https://cdn.pixabay.com/photo/2016/11/18/17/20/living-room-1835923_1280.jpg',
+                'https://cdn.pixabay.com/photo/2021/11/08/00/30/bedroom-6778193_1280.jpg',
+                'https://cdn.pixabay.com/photo/2017/02/24/12/19/apartment-2094660_1280.jpg',
+                'https://cdn.pixabay.com/photo/2016/11/09/02/21/kitchen-1809844_1280.jpg',
+                'https://cdn.pixabay.com/photo/2024/08/31/11/18/kitchen-9011264_1280.jpg',
+                'https://cdn.pixabay.com/photo/2024/07/05/08/19/living-room-8874204_1280.jpg',
+                'https://cdn.pixabay.com/photo/2023/12/30/07/31/living-room-8477525_1280.jpg',
+                'https://cdn.pixabay.com/photo/2015/05/05/01/10/house-753270_1280.jpg',
+                'https://cdn.pixabay.com/photo/2014/08/11/21/40/bedroom-416062_1280.jpg',
             ];
 
             // elimino tutte le immagini salvate
