@@ -873,28 +873,7 @@ class ApartmentSeeder extends Seeder
                     'address' => 'Via Vittorio Emanuele, Palermo',
                     'latitude' => 38.115200,
                     'longitude' => 13.360500,
-                ],
-                [
-                    'title' => 'Bilocale in zona Testaccio a Roma',
-                    'description' => 'Bilocale moderno e ben arredato, situato nel caratteristico quartiere Testaccio.',
-                    'address' => 'Via Marmorata, Roma',
-                    'latitude' => 41.877400,
-                    'longitude' => 12.469000,
-                ],
-                [
-                    'title' => 'Trilocale con vista sul mare a Napoli',
-                    'description' => 'Trilocale con vista sul mare, perfetto per chi ama il panorama.',
-                    'address' => 'Via Posillipo, Napoli',
-                    'latitude' => 40.837000,
-                    'longitude' => 14.227000,
-                ],
-                [
-                    'title' => 'Monolocale in zona Isola a Milano',
-                    'description' => 'Monolocale moderno e confortevole, situato nel vivace quartiere Isola.',
-                    'address' => 'Via Garigliano, Milano',
-                    'latitude' => 45.489000,
-                    'longitude' => 9.187800,
-                ],
+                ]
 
             ];
 
